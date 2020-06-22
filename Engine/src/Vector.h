@@ -12,4 +12,8 @@ struct Vector {
         this->y += rhs.y;
         return *this;
     }
+    Vector operator*(const int &rhs)
+    {
+        return { this->x * rhs, this->y * rhs };
+    }
 };

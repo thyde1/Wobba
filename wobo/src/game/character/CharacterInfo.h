@@ -8,5 +8,4 @@ public:
     bool isGrounded = false;
     Direction direction = Direction::NONE;
     bool jumping = false;
-    Vector velocity = { 0, 0 };
 };

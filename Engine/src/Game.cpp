@@ -42,6 +42,7 @@ void Game::start()
             this->handleInput();
             this->update(elapsed);
             destroyObjectsPendingDestruction();
+            this->applyMovement(elapsed);
             this->checkCollisions();
             destroyObjectsPendingDestruction();
             lastUpdate = SDL_GetTicks();
@@ -84,6 +85,14 @@ void Game::update(int elapsed)
     for(GameObject *gameObject : this->gameObjects)
     {
         gameObject->update(elapsed);
+    }
+}
+
+void Game::applyMovement(int elapsed)
+{
+    for (GameObject *gameObject : this->gameObjects) {
+        auto deltaV = gameObject->velocity * elapsed;
+        gameObject->globalPosition += deltaV;
     }
 }
 

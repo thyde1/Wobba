@@ -6,7 +6,7 @@
 #include "CollisionHandler.h"
 #include "Renderer.h"
 
-GameObject::GameObject(Game *game, SDL_Renderer *renderer) : globalPosition({0, 0})
+GameObject::GameObject(Game *game, SDL_Renderer *renderer) : globalPosition({0, 0}), velocity({0, 0})
 {
     this->game = game;
     this->sdlRenderer = renderer;
@@ -33,10 +33,6 @@ void GameObject::update(int elapsed)
     for (auto updater : this->updaters)
     {
         updater->update(elapsed);
-    }
-    for (auto gameCollider : this->colliders) {
-        gameCollider->collider->x = this->globalPosition.x;
-        gameCollider->collider->y = this->globalPosition.y;
     }
 }
 

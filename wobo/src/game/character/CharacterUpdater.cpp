@@ -8,22 +8,24 @@ CharacterUpdater::CharacterUpdater(CharacterInfo &characterInfo) : characterInfo
 void CharacterUpdater::update(int elapsed)
 {
     if (this->characterInfo.direction == Direction::LEFT) {
-        this->gameObject->globalPosition.x -= elapsed / 5;
+        this->gameObject->velocity.x = -elapsed / 10;
     }
 
     if (this->characterInfo.direction == Direction::RIGHT) {
-        this->gameObject->globalPosition.x += elapsed / 5;
+        this->gameObject->velocity.x = elapsed / 10;
+    }
+
+    if (this->characterInfo.direction == Direction::NONE) {
+        this->gameObject->velocity.x = 0;
     }
 
     if (this->characterInfo.jumping && this->characterInfo.isGrounded) {
-        this->characterInfo.velocity.y = -10;
+        this->gameObject->velocity.y = -10;
     }
 
     if (!this->characterInfo.isGrounded) {
-        this->characterInfo.velocity.y = std::min(this->characterInfo.velocity.y + elapsed / 10, 7);
-    }
-
-    this->gameObject->globalPosition += this->characterInfo.velocity;
+        this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * 1, 1);
+    } 
 
     this->characterInfo.isGrounded = false;
 }

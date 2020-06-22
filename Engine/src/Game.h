@@ -19,6 +19,7 @@ public:
     void start();
     void handleInput();
     void update(int elapsed);
+    void applyMovement(int elapsed);
     void checkCollisions();
     void render();
     GameObject* instantiateObject();

@@ -43,6 +43,7 @@ public:
         return NULL;
     }
     Vector globalPosition;
+    Vector velocity;
 private:
     void checkCollision(Collider *collider);
     SDL_Renderer *sdlRenderer;
