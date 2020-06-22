@@ -1,7 +1,7 @@
 #pragma once
 
 struct Vector {
-    int x, y;
+    double x, y;
     Vector operator+(const Vector &rhs)
     {
         return { this->x + rhs.x, this->y + rhs.y };
