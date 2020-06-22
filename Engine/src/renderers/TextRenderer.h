@@ -3,7 +3,7 @@
 #include <vector>
 #include "SDL_ttf.h"
 #include "../Renderer.h"
-#include "../Position.h"
+#include "../Vector.h"
 #include "Text/TextAlignment.h"
 
 class TextRenderer : public Renderer {

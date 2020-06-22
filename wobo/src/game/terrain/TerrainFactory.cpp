@@ -4,7 +4,7 @@ TerrainFactory::TerrainFactory(Game &game) : game(game)
 {
 }
 
-GameObject* TerrainFactory::create(Position position)
+GameObject* TerrainFactory::create(Vector position)
 {
     return this->game.instantiateObject()
         ->setGlobalPosition(position)

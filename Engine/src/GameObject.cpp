@@ -6,7 +6,7 @@
 #include "CollisionHandler.h"
 #include "Renderer.h"
 
-GameObject::GameObject(Game* game, SDL_Renderer* renderer)
+GameObject::GameObject(Game *game, SDL_Renderer *renderer) : globalPosition({0, 0})
 {
     this->game = game;
     this->sdlRenderer = renderer;
@@ -122,7 +122,7 @@ GameObject *GameObject::addComponent(Component *component)
     return this;
 }
 
-GameObject *GameObject::setGlobalPosition(Position position)
+GameObject *GameObject::setGlobalPosition(Vector position)
 {
     this->globalPosition = position;
     return this;

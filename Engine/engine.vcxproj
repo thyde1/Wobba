@@ -159,7 +159,7 @@
     <ClInclude Include="src\GameCollider.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\InputHandler.h" />
-    <ClInclude Include="src\Position.h" />
+    <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\renderers\SpriteRenderer.h" />
     <ClInclude Include="src\renderers\TextRenderer.h" />

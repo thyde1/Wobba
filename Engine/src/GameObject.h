@@ -2,7 +2,7 @@
 
 #include "SDL.h"
 #include <list>
-#include "Position.h"
+#include "Vector.h"
 #include "GameCollider.h"
 
 class Game;
@@ -28,7 +28,7 @@ public:
     GameObject* addCollisionHandler(CollisionHandler *collisionHandler);
     GameObject* addCollider(ColliderType type, Collider *collider);
     GameObject* addComponent(Component *component);
-    GameObject* setGlobalPosition(Position position);
+    GameObject* setGlobalPosition(Vector position);
     template <class T>
     T getComponent()
     {
@@ -42,7 +42,7 @@ public:
 
         return NULL;
     }
-    Position globalPosition;
+    Vector globalPosition;
 private:
     void checkCollision(Collider *collider);
     SDL_Renderer *sdlRenderer;

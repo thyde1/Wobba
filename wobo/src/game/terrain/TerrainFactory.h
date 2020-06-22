@@ -4,7 +4,7 @@
 class TerrainFactory {
 public:
     TerrainFactory(Game &game);
-    GameObject* create(Position position);
+    GameObject* create(Vector position);
 private:
     Game &game;
 };

@@ -1,12 +1,12 @@
 #pragma once
 
-struct Position {
+struct Vector {
     int x, y;
-    Position operator+(const Position &rhs)
+    Vector operator+(const Vector &rhs)
     {
         return { this->x + rhs.x, this->y + rhs.y };
     };
-    Position operator+=(const Position &rhs)
+    Vector operator+=(const Vector &rhs)
     {
         this->x += rhs.x;
         this->y += rhs.y;
