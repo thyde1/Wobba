@@ -8,14 +8,16 @@ CharacterUpdater::CharacterUpdater(CharacterInfo &characterInfo) : characterInfo
 void CharacterUpdater::update(int elapsed)
 {
     const int jumpStrength = 2;
+    const double runSpeed = 1;
+    const double runAcceleration = 0.005;
     const int maxJumpDuration = 100;
     const double gravity = 0.05;
     if (this->characterInfo.direction == Direction::LEFT) {
-        this->gameObject->velocity.x = -elapsed / 10;
+        this->gameObject->velocity.x = std::max(std::min(this->gameObject->velocity.x - elapsed * runAcceleration, 0.), -runSpeed);
     }
 
     if (this->characterInfo.direction == Direction::RIGHT) {
-        this->gameObject->velocity.x = elapsed / 10;
+        this->gameObject->velocity.x = std::min(std::max(this->gameObject->velocity.x + elapsed * runAcceleration, 0.), runSpeed);
     }
 
     if (this->characterInfo.direction == Direction::NONE) {
