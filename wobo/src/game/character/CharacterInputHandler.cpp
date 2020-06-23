@@ -8,9 +8,18 @@ void CharacterInputHandler::handleInput(std::list<SDL_Keysym> keys)
 {
     this->characterInfo.direction = Direction::NONE;
     this->characterInfo.jumping = false;
+    bool jumpKeyDown = false;
     for (auto key : keys) {
         if (key.sym == SDLK_SPACE) {
+            jumpKeyDown = true;
+        }
+
+        if (key.sym == SDLK_SPACE && !this->characterInfo.jumpHeld && this->characterInfo.isGrounded) {
             this->characterInfo.jumping = true;
+        }
+
+        if (key.sym == SDLK_SPACE && !this->characterInfo.isGrounded) {
+            this->characterInfo.jumpHeld = true;
         }
 
         switch (key.sym) {
@@ -21,5 +30,9 @@ void CharacterInputHandler::handleInput(std::list<SDL_Keysym> keys)
             this->characterInfo.direction = Direction::LEFT;
             break;
         }
+    }
+
+    if (!jumpKeyDown) {
+        this->characterInfo.jumpHeld = false;
     }
 }

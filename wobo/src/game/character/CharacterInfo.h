@@ -8,4 +8,5 @@ public:
     bool isGrounded = false;
     Direction direction = Direction::NONE;
     bool jumping = false;
+    bool jumpHeld = false;
 };
