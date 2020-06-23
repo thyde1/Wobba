@@ -7,6 +7,9 @@ CharacterUpdater::CharacterUpdater(CharacterInfo &characterInfo) : characterInfo
 
 void CharacterUpdater::update(int elapsed)
 {
+    const int jumpStrength = 2;
+    const int maxJumpDuration = 100;
+    const double gravity = 0.05;
     if (this->characterInfo.direction == Direction::LEFT) {
         this->gameObject->velocity.x = -elapsed / 10;
     }
@@ -19,12 +22,22 @@ void CharacterUpdater::update(int elapsed)
         this->gameObject->velocity.x = 0;
     }
 
-    if (this->characterInfo.jumping && this->characterInfo.isGrounded) {
-        this->gameObject->velocity.y = -5;
+    if (this->characterInfo.jumping && this->characterInfo.isGrounded && this->jumpDuration < 0) {
+        this->gameObject->velocity.y = -jumpStrength;
+        this->jumpDuration = 0;
+    }
+
+    if (this->characterInfo.jumping && this->jumpDuration >= 0 && this->jumpDuration < maxJumpDuration) {
+        this->gameObject->velocity.y = -jumpStrength;
+        this->jumpDuration += elapsed;
+    }
+
+    if (!this->characterInfo.jumping) {
+        this->jumpDuration = -1;
     }
 
     if (!this->characterInfo.isGrounded) {
-        this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * 0.1, 1.);
+        this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, 1.);
     } 
 
     this->characterInfo.isGrounded = false;
