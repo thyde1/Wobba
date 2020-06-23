@@ -51,18 +51,19 @@ void GameObject::checkCollision(Collider* collider)
     for (auto gameCollider : this->colliders)
     {
         auto thisCollider = gameCollider->collider;
-        if (thisCollider->checkCollision(collider)) {
-            this->handleCollision(collider);
-            collider->getGameObject()->handleCollision(thisCollider);
+        auto collisionCheckResult = thisCollider->checkCollision(collider);
+        if (collisionCheckResult.collisionDetected) {
+            this->handleCollision(collider, collisionCheckResult.normal);
+            collider->getGameObject()->handleCollision(thisCollider, collisionCheckResult.normal);
         }
     }
 }
 
-void GameObject::handleCollision(Collider *collider)
+void GameObject::handleCollision(Collider *collider, Vector &normal)
 {
     for (auto collisionHandler : this->collisionHandlers)
     {
-        collisionHandler->handleCollision(collider);
+        collisionHandler->handleCollision(collider, normal);
     }
 }
 

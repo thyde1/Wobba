@@ -19,7 +19,7 @@ public:
     Game* game;
     void update(int elapsed);
     void checkCollision(GameObject *object);
-    virtual void handleCollision(Collider *collider);
+    virtual void handleCollision(Collider *collider, Vector &normal);
     void handleInput(std::list<SDL_Keysym> keys);
     void render();
     GameObject* addUpdater(Updater *updater);

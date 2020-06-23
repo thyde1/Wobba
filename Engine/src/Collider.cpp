@@ -1,11 +1,11 @@
 #include "Collider.h"
 #include "GameObject.h"
 
-Collider::Collider(int w, int h) : w(w), h(h)
+Collider::Collider(int w, int h) : size({ w, h })
 {
 }
 
-Collider::Collider(Size size) : Collider(size.w, size.h)
+Collider::Collider(Size size) : size(size)
 {
 }
 
@@ -14,32 +14,38 @@ void Collider::setGameObject(GameObject* gameObject)
     Component::setGameObject(gameObject);
 }
 
-bool Collider::checkCollision(Collider* collider)
+CollisionCheckResult Collider::checkCollision(Collider* collider)
 {
     Vector thisPosition = this->gameObject->globalPosition;
+    Vector thisVelocity = this->gameObject->velocity;
     Vector otherPosition = collider->gameObject->globalPosition;
-    return Collider::checkCollision(this->w, this->h, thisPosition.x, thisPosition.y, collider->w, collider->h, otherPosition.x, otherPosition.y);
+    Vector otherVelocity = collider->gameObject->velocity;
+    return Collider::checkCollision(
+        this->size, thisPosition, thisVelocity, collider->size, otherPosition);
 }
 
-bool Collider::checkCollision(int wA, int hA, int xA, int yA, int wB, int hB, int xB, int yB)
+CollisionCheckResult Collider::checkCollision(Size sizeA, Vector posA, Vector velA, Size sizeB, Vector posB)
 {
-    if (xA > xB + wB) {
-        return false;
+    if (posA.x > posB.x + sizeB.w) {
+        return { false, { 0, 0 } };
     }
 
-    if (xA + wA < xB) {
-        return false;
+    if (posA.x + sizeA.w < posB.x) {
+        return { false, { 0, 0 } };
     }
 
-    if (yA > yB + hB) {
-        return false;
+    if (posA.y > posB.y + sizeB.h) {
+        return { false, { 0, 0 } };
     }
 
-    if (yA + hA < yB) {
-        return false;
+    if (posA.y + sizeA.h < posB.y) {
+        return { false, { 0, 0 } };
     }
 
-    return true;
+    return { true, { 0, -1 } };
 }
 
-
+Vector Collider::getCollisionNormal(Size sizeA, Vector posA, Vector velA, Size sizeB, Vector posB)
+{
+    return { 0, -1 };
+}

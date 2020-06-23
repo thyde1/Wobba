@@ -4,9 +4,16 @@ CharacterCollisionHandler::CharacterCollisionHandler(CharacterInfo &characterInf
 {
 }
 
-void CharacterCollisionHandler::handleCollision(Collider *collider)
+void CharacterCollisionHandler::handleCollision(Collider *collider, Vector &normal)
 {
-    this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y - this->characterInfo.size.h;
-    this->gameObject->velocity.y = 0;
+    if (normal.y != 0) {
+        this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y - this->characterInfo.size.h;
+        this->gameObject->velocity.y = 0;
+    }
+
+    if (normal.x != 0) {
+        this->gameObject->velocity.x = 0;
+    }
+
     this->characterInfo.isGrounded = true;
 }

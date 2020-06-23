@@ -44,7 +44,7 @@ void TextRenderer::render()
         case TextAlignment::LEFT:
             break;
         case TextAlignment::CENTER:
-            uiRect.x = this->gameObject->globalPosition.x - w / 2;
+            uiRect.x = (int)(this->gameObject->globalPosition.x - w / 2);
             break;
         }
         currentYOffset += h;

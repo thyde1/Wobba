@@ -5,5 +5,5 @@
 
 class CollisionHandler : public Component {
 public:
-    virtual void handleCollision(Collider *collider) = 0;
+    virtual void handleCollision(Collider *collider, Vector &normal) = 0;
 };
