@@ -18,5 +18,5 @@ void Wobba::init()
     }
 
     auto characterFactory = CharacterFactory(*this);
-    characterFactory.create();
+    characterFactory.create()->setGlobalPosition({ 50, 400 });
 }

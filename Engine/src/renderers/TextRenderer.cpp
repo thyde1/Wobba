@@ -39,7 +39,7 @@ void TextRenderer::render()
     for (auto texture : textures) {
         int w, h;
         SDL_QueryTexture(texture, NULL, NULL, &w, &h);
-        SDL_Rect uiRect{ this->gameObject->globalPosition.x, this->gameObject->globalPosition.y + currentYOffset, w, h };
+        SDL_Rect uiRect{ (int)this->gameObject->globalPosition.x, (int)(this->gameObject->globalPosition.y + currentYOffset), w, h };
         switch (this->alignment) {
         case TextAlignment::LEFT:
             break;

@@ -39,7 +39,7 @@ void CharacterUpdater::update(int elapsed)
     }
 
     if (!this->characterInfo.isGrounded) {
-        this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, 1.);
+        this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, 0.9);
     } 
 
     this->characterInfo.isGrounded = false;

@@ -51,7 +51,7 @@ void GameObject::checkCollision(Collider* collider)
     for (auto gameCollider : this->colliders)
     {
         auto thisCollider = gameCollider->collider;
-        auto collisionCheckResult = thisCollider->checkCollision(collider);
+        auto collisionCheckResult = collider->checkCollision(thisCollider);
         if (collisionCheckResult.collisionDetected) {
             this->handleCollision(collider, collisionCheckResult.normal);
             collider->getGameObject()->handleCollision(thisCollider, collisionCheckResult.normal);

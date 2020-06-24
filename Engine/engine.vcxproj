@@ -148,7 +148,9 @@
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\renderers\SpriteRenderer.cpp" />
     <ClCompile Include="src\renderers\TextRenderer.cpp" />
+    <ClCompile Include="src\Size.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
+    <ClCompile Include="src\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collider.h" />
