@@ -10,7 +10,7 @@ void CharacterUpdater::update(int elapsed)
     const double jumpStrength = 0.7;
     const double runSpeed = 1;
     const double runAcceleration = 0.005;
-    const int maxJumpDuration = 100;
+    const int maxJumpDuration = 150;
     const double gravity = 0.001;
     auto groundCollisions = this->gameObject->game->checkCollisions(this->groundCollider);
     auto isGrounded = groundCollisions.size() > 0;
@@ -42,7 +42,7 @@ void CharacterUpdater::update(int elapsed)
         this->jumpDuration = -1;
     }
 
-    if (!this->characterInfo.jumping && isGrounded) {
+    if (!this->characterInfo.jumping && isGrounded && this->gameObject->velocity.y >= 0) {
         this->gameObject->velocity.y = 0;
         auto groundObject = groundCollisions.front().colliderB->getGameObject();
         this->gameObject->globalPosition.y = groundObject->globalPosition.y - groundCollisions.front().colliderB->size.h;

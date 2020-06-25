@@ -24,7 +24,6 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
     if (normal.y != 0) {
         std::cout << "y";
         this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y - thisCollider->size.h;
-        this->characterInfo.isGrounded = true;
     }
 
     if (normal.x != 0) {
