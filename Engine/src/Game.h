@@ -21,6 +21,7 @@ public:
     void update(int elapsed);
     void applyMovement(int elapsed);
     void checkCollisions();
+    std::list<Collision> checkCollisions(Collider collider);
     void render();
     GameObject* instantiateObject();
     void destroyObject(GameObject* object);

@@ -4,7 +4,7 @@
 
 class CharacterInfo : public Component {
 public:
-    Size size = { 8, 8 };
+    Size size = { 100, 100 };
     bool isGrounded = false;
     Direction direction = Direction::NONE;
     bool jumping = false;

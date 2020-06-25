@@ -103,12 +103,6 @@ void Game::checkCollisions()
 {
     for (GameObject *gameObject : this->gameObjects)
     {
-        /*std::list<GameObject*> sortedGameObjects = std::list<GameObject*>(gameObjects);
-        sortedGameObjects.sort([&](GameObject *a, GameObject *b) {
-            return (a->globalPosition - gameObject->globalPosition).magnitudeSquared() > (b->globalPosition - gameObject->globalPosition).magnitudeSquared();
-        });*/
-
-        //for (GameObject *other : sortedGameObjects) {
         std::list<Collision> collisions;
         for (GameObject *other : gameObjects) {
             if (other != gameObject) {
@@ -122,21 +116,39 @@ void Game::checkCollisions()
         collisions.sort([&](Collision &a, Collision &b) {
             auto collisionADistanceSquared = (a.colliderA->getGameObject()->globalPosition - a.colliderB->getGameObject()->globalPosition).magnitudeSquared();
             auto collisionBDistanceSquared = (b.colliderA->getGameObject()->globalPosition - b.colliderB->getGameObject()->globalPosition).magnitudeSquared();
-            if (collisionADistanceSquared == collisionBDistanceSquared) {
-                return std::abs(a.normal.y) < std::abs(b.normal.y);
+            if (a.normal.x != 0 && b.normal.x == 0) {
+                return true;
             }
-
+            else if (a.normal.x == 0 && b.normal.x != 0) {
+                return false;
+            }
 
             return collisionADistanceSquared < collisionBDistanceSquared;
         });
 
-        for (auto &collision : collisions) {
-            if (collision.normal.x != 0.) {
-                auto x = 0;
+        if (collisions.size() > 0) {
+            auto collision = collisions.front();
+            if (collision.normal.y != 0) {
+                int x = 0;
             }
             collision.colliderA->getGameObject()->handleCollision(collision);
+            this->checkCollisions();
         }
     }
+}
+
+std::list<Collision> Game::checkCollisions(Collider collider)
+{
+    std::list<Collision> collisions;
+    for (GameObject *other : gameObjects) {
+        if (other != collider.getGameObject()) {
+            auto collision = other->checkCollision(collider);
+            if (collision.isCollision) {
+                collisions.push_front(collision);
+            }
+        }
+    }
+    return collisions;
 }
 
 void Game::render()

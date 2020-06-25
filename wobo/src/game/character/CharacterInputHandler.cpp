@@ -14,11 +14,11 @@ void CharacterInputHandler::handleInput(std::list<SDL_Keysym> keys)
             jumpKeyDown = true;
         }
 
-        if (key.sym == SDLK_SPACE && !this->characterInfo.jumpHeld && this->characterInfo.isGrounded) {
+        if (jumpKeyDown && !this->characterInfo.jumpHeld) {
             this->characterInfo.jumping = true;
         }
 
-        if (key.sym == SDLK_SPACE && !this->characterInfo.isGrounded) {
+        if (jumpKeyDown) {
             this->characterInfo.jumpHeld = true;
         }
 

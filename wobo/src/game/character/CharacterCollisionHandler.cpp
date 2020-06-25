@@ -1,4 +1,5 @@
 #include "CharacterCollisionHandler.h"
+#include <iostream>
 
 CharacterCollisionHandler::CharacterCollisionHandler(CharacterInfo &characterInfo) : characterInfo(characterInfo)
 {
@@ -15,20 +16,19 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
         return;
     }
 
-    // Character collider sits one pixel deep in ground so we continuously receive collisions
-    auto isGroundedOnCollider =
-        this->gameObject->globalPosition.y == collider->getGameObject()->globalPosition.y - this->characterInfo.size.h + 1
-        && this->gameObject->velocity.y == 0;
+    if (collider->getGameObject() == this->getGameObject()) {
+        // Don't collide with one of our own colliders
+        return;
+    }
 
-    if (normal.y != 0 || isGroundedOnCollider) {
-        this->gameObject->velocity.y = 0;
-        this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y - this->characterInfo.size.h + 1;
+    if (normal.y != 0) {
+        std::cout << "y";
+        this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y - thisCollider->size.h;
         this->characterInfo.isGrounded = true;
     }
 
-    if (normal.x != 0 && !isGroundedOnCollider) {
-        this->gameObject->velocity.x = 0;
-
+    if (normal.x != 0) {
+       std::cout << "x";
         if (normal.x < 0) {
             this->gameObject->globalPosition.x = collider->getGameObject()->globalPosition.x - this->characterInfo.size.w;
         }

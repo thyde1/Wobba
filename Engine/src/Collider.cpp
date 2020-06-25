@@ -1,11 +1,11 @@
 #include "Collider.h"
 #include "GameObject.h"
 
-Collider::Collider(int w, int h) : size({ w, h })
+Collider::Collider(Size size, Vector offset) : size(size), offset(offset)
 {
 }
 
-Collider::Collider(Size size) : size(size)
+Collider::Collider(Size size) : Collider(size, { 0, 0 })
 {
 }
 
@@ -16,9 +16,9 @@ void Collider::setGameObject(GameObject *gameObject)
 
 Collision Collider::checkCollision(Collider *collider)
 {
-    Vector thisPosition = this->gameObject->globalPosition;
+    Vector thisPosition = this->gameObject->globalPosition + this->offset;
     Vector thisVelocity = this->gameObject->velocity;
-    Vector otherPosition = collider->gameObject->globalPosition;
+    Vector otherPosition = collider->gameObject->globalPosition + collider->offset;
     Vector otherVelocity = collider->gameObject->velocity;
     auto collisionDetails = Collider::checkCollision(
         this->size, thisPosition, thisVelocity, collider->size, otherPosition);

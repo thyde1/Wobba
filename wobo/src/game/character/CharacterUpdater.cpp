@@ -1,17 +1,19 @@
 #include "CharacterUpdater.h"
 #include <algorithm>
 
-CharacterUpdater::CharacterUpdater(CharacterInfo &characterInfo) : characterInfo(characterInfo)
+CharacterUpdater::CharacterUpdater(CharacterInfo &characterInfo, Collider &groundCollider) : characterInfo(characterInfo), groundCollider(groundCollider)
 {
 }
 
 void CharacterUpdater::update(int elapsed)
 {
-    const int jumpStrength = 2;
+    const double jumpStrength = 0.7;
     const double runSpeed = 1;
     const double runAcceleration = 0.005;
     const int maxJumpDuration = 100;
-    const double gravity = 0.05;
+    const double gravity = 0.001;
+    auto isGrounded = this->gameObject->game->checkCollisions(this->groundCollider).size() > 0;
+
     if (this->characterInfo.direction == Direction::LEFT) {
         this->gameObject->velocity.x = std::max(std::min(this->gameObject->velocity.x - elapsed * runAcceleration, 0.), -runSpeed);
     }
@@ -24,9 +26,10 @@ void CharacterUpdater::update(int elapsed)
         this->gameObject->velocity.x = 0;
     }
 
-    if (this->characterInfo.jumping && this->characterInfo.isGrounded) {
+    if (this->characterInfo.jumping && isGrounded) {
         this->gameObject->velocity.y = -jumpStrength;
         this->jumpDuration = 0;
+        this->characterInfo.isGrounded = false;
     }
 
     if (this->characterInfo.jumpHeld && this->jumpDuration >= 0 && this->jumpDuration < maxJumpDuration) {
@@ -38,9 +41,10 @@ void CharacterUpdater::update(int elapsed)
         this->jumpDuration = -1;
     }
 
-    if (!this->characterInfo.isGrounded) {
+    if (!this->characterInfo.jumping && isGrounded) {
+        this->gameObject->velocity.y = 0;
+    }
+    else {
         this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, 0.9);
     }
-
-    this->characterInfo.isGrounded = false;
 }

@@ -20,6 +20,7 @@ public:
     Game *game;
     void update(int elapsed);
     Collision checkCollision(GameObject *object);
+    Collision checkCollision(Collider &collider);
     virtual void handleCollision(Collision collision);
     void handleInput(std::list<SDL_Keysym> keys);
     void render();
@@ -46,7 +47,6 @@ public:
     Vector globalPosition;
     Vector velocity;
 private:
-    Collision checkCollision(Collider *collider);
     SDL_Renderer *sdlRenderer;
     std::list<Updater*> updaters;
     std::list<Renderer*> renderers;

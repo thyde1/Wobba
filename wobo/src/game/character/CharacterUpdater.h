@@ -5,9 +5,10 @@
 
 class CharacterUpdater : public Updater {
 public:
-    CharacterUpdater(CharacterInfo &characterInfo);
+    CharacterUpdater(CharacterInfo &characterInfo, Collider &groundCollider);
     void update(int elapsed);
     int jumpDuration = -1;
 private:
     CharacterInfo &characterInfo;
+    Collider &groundCollider;
 };

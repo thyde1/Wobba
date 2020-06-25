@@ -41,19 +41,19 @@ Collision GameObject::checkCollision(GameObject *object)
     for (auto gameCollider : this->colliders)
     {
         if (gameCollider->type == ColliderType::ACTIVE) {
-            return object->checkCollision(gameCollider->collider);
+            return object->checkCollision(*gameCollider->collider);
         }
     }
 
     return Collision{ false };
 }
 
-Collision GameObject::checkCollision(Collider *collider)
+Collision GameObject::checkCollision(Collider &collider)
 {
     for (auto gameCollider : this->colliders)
     {
         auto thisCollider = gameCollider->collider;
-        auto collision = collider->checkCollision(thisCollider);
+        auto collision = collider.checkCollision(thisCollider);
         if (collision.isCollision) {
             return collision;
         }
