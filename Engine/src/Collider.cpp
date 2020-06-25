@@ -14,31 +14,32 @@ void Collider::setGameObject(GameObject* gameObject)
     Component::setGameObject(gameObject);
 }
 
-CollisionCheckResult Collider::checkCollision(Collider* collider)
+Collision Collider::checkCollision(Collider* collider)
 {
     Vector thisPosition = this->gameObject->globalPosition;
     Vector thisVelocity = this->gameObject->velocity;
     Vector otherPosition = collider->gameObject->globalPosition;
     Vector otherVelocity = collider->gameObject->velocity;
-    return Collider::checkCollision(
+    auto collisionDetails = Collider::checkCollision(
         this->size, thisPosition, thisVelocity, collider->size, otherPosition);
+    return Collision{ collisionDetails.collisionDetected, collisionDetails.normal, this, collider };
 }
 
 CollisionCheckResult Collider::checkCollision(Size &sizeA, Vector &posA, Vector &velA, Size &sizeB, Vector &posB)
 {
-    if (posA.x > posB.x + sizeB.w) {
+    if (posA.x >= posB.x + sizeB.w) {
         return { false, { 0, 0 } };
     }
 
-    if (posA.x + sizeA.w < posB.x) {
+    if (posA.x + sizeA.w <= posB.x) {
         return { false, { 0, 0 } };
     }
 
-    if (posA.y > posB.y + sizeB.h) {
+    if (posA.y >= posB.y + sizeB.h) {
         return { false, { 0, 0 } };
     }
 
-    if (posA.y + sizeA.h < posB.y) {
+    if (posA.y + sizeA.h <= posB.y) {
         return { false, { 0, 0 } };
     }
 
@@ -50,11 +51,15 @@ CollisionCheckResult Collider::checkCollision(Size &sizeA, Vector &posA, Vector 
 
 Vector Collider::getCollisionNormal(Size &sizeA, Vector &posA, Vector &velA, Size &sizeB, Vector &posB)
 {
+    if (velA == Vector{ 0, 0 }) {
+        return { 0, 0 };
+    }
+
     if (posA.y + sizeA.h <= posB.y) {
         // Top side
-        if (posA.x + sizeA.w <= posB.x) {
+        if (posA.x + sizeA.w < posB.x) {
             // Top left
-            Vector topLeftVel = posB - posA + sizeA.toVector();
+            Vector topLeftVel = posB - (posA + sizeA.toVector());
             if (velA.normalize().y > topLeftVel.normalize().y) {
                 return { -1, 0 };
             }
@@ -62,11 +67,11 @@ Vector Collider::getCollisionNormal(Size &sizeA, Vector &posA, Vector &velA, Siz
                 return { 0, -1 };
             }
         }
-        else if (posA.x >= posB.x + sizeB.w)
+        else if (posA.x > posB.x + sizeB.w)
         {
             // Top right
-            Vector topRightVel = posB + Vector{ (double)sizeB.w, 0 } - posA + Vector{ 0, (double)sizeA.h };
-            if (velA.normalize().y >= topRightVel.normalize().y) {
+            Vector topRightVel = (posB + Vector{ (double)sizeB.w, 0 }) - (posA + Vector{ 0, (double)sizeA.h });
+            if (velA.normalize().y > topRightVel.normalize().y) {
                 return { 1, 0 };
             }
             else {
@@ -81,9 +86,9 @@ Vector Collider::getCollisionNormal(Size &sizeA, Vector &posA, Vector &velA, Siz
     }
     else if (posA.y + sizeA.h <= posB.y) {
         // Bottom side
-        if (posA.x + sizeA.w <= posB.x) {
+        if (posA.x + sizeA.w < posB.x) {
             // Bottom left
-            Vector bottomLeftVel = posB + Vector{ 0, (double)sizeB.h } - posA + Vector{ (double)sizeA.w, 0 };
+            Vector bottomLeftVel = (posB + Vector{ 0, (double)sizeB.h }) - (posA + Vector{ (double)sizeA.w, 0 });
             if (velA.normalize().y < bottomLeftVel.normalize().y) {
                 return { -1, 0 };
             }
@@ -91,9 +96,9 @@ Vector Collider::getCollisionNormal(Size &sizeA, Vector &posA, Vector &velA, Siz
                 return { 0, 1 };
             }
         }
-        else if (posA.x >= posB.x + sizeB.w) {
+        else if (posA.x > posB.x + sizeB.w) {
             // Bottom right
-            Vector bottomRightVel = posB + sizeB.toVector() - posA;
+            Vector bottomRightVel = (posB + sizeB.toVector()) - posA;
             if (velA.normalize().y < bottomRightVel.normalize().y) {
                 return { 1, 0 };
             }

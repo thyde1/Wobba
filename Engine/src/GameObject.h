@@ -5,6 +5,7 @@
 #include "Vector.h"
 #include "GameCollider.h"
 
+struct Collision;
 class Game;
 class Component;
 class Updater;
@@ -16,10 +17,10 @@ class GameObject {
 public:
     GameObject(Game* game, SDL_Renderer *renderer);
     virtual ~GameObject();
-    Game* game;
+    Game *game;
     void update(int elapsed);
-    void checkCollision(GameObject *object);
-    virtual void handleCollision(Collider *collider, Vector &normal);
+    Collision checkCollision(GameObject *object);
+    virtual void handleCollision(Collision collision);
     void handleInput(std::list<SDL_Keysym> keys);
     void render();
     GameObject* addUpdater(Updater *updater);
@@ -45,7 +46,7 @@ public:
     Vector globalPosition;
     Vector velocity;
 private:
-    void checkCollision(Collider *collider);
+    Collision checkCollision(Collider *collider);
     SDL_Renderer *sdlRenderer;
     std::list<Updater*> updaters;
     std::list<Renderer*> renderers;

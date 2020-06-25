@@ -16,7 +16,7 @@ GameObject *CharacterFactory::create()
         ->setGlobalPosition({ 15, 15 })
         ->addComponent(characterInfo)
         ->addRenderer(new SpriteRenderer("assets/character.png"))
-        ->addCollider(ColliderType::ACTIVE, new Collider(Size{8, 8}))
+        ->addCollider(ColliderType::ACTIVE, new Collider(Size{8, 9}))
         ->addUpdater(new CharacterUpdater(*characterInfo))
         ->addCollisionHandler(new CharacterCollisionHandler(*characterInfo))
         ->addInputHandler(new CharacterInputHandler(*characterInfo));

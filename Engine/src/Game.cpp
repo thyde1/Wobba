@@ -1,6 +1,7 @@
 #include <memory>
 #include "Game.h"
 #include "TextureManager.h"
+#include "Collider.h"
 
 Game::Game(const char *title, Size windowSize) : windowSize(windowSize), title(title), isRunning(true)
 {
@@ -100,10 +101,30 @@ void Game::checkCollisions()
 {
     for (GameObject *gameObject : this->gameObjects)
     {
-        for (GameObject *other : this->gameObjects) {
+        /*std::list<GameObject*> sortedGameObjects = std::list<GameObject*>(gameObjects);
+        sortedGameObjects.sort([&](GameObject *a, GameObject *b) {
+            return (a->globalPosition - gameObject->globalPosition).magnitudeSquared() > (b->globalPosition - gameObject->globalPosition).magnitudeSquared();
+        });*/
+
+        //for (GameObject *other : sortedGameObjects) {
+        std::list<Collision> collisions;
+        for (GameObject *other : gameObjects) {
             if (other != gameObject) {
-                gameObject->checkCollision(other);
+                auto collision = gameObject->checkCollision(other);
+                if (collision.isCollision) {
+                    collisions.push_front(collision);
+                }
             }
+        }
+
+        collisions.sort([&](Collision &a, Collision &b) {
+            auto collisionADistanceSquared = (a.colliderA->getGameObject()->globalPosition - a.colliderB->getGameObject()->globalPosition).magnitudeSquared();
+            auto collisionBDistanceSquared = (b.colliderA->getGameObject()->globalPosition - b.colliderB->getGameObject()->globalPosition).magnitudeSquared();
+            return collisionADistanceSquared > collisionBDistanceSquared;
+        });
+
+        for (auto &collision : collisions) {
+            collision.colliderA->getGameObject()->handleCollision(collision);
         }
     }
 }

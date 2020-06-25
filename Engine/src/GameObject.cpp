@@ -36,34 +36,35 @@ void GameObject::update(int elapsed)
     }
 }
 
-void GameObject::checkCollision(GameObject* object)
+Collision GameObject::checkCollision(GameObject *object)
 {
     for (auto gameCollider : this->colliders)
     {
         if (gameCollider->type == ColliderType::ACTIVE) {
-            object->checkCollision(gameCollider->collider);
+            return object->checkCollision(gameCollider->collider);
         }
     }
+
+    return Collision{ false };
 }
 
-void GameObject::checkCollision(Collider* collider)
+Collision GameObject::checkCollision(Collider *collider)
 {
     for (auto gameCollider : this->colliders)
     {
         auto thisCollider = gameCollider->collider;
-        auto collisionCheckResult = collider->checkCollision(thisCollider);
-        if (collisionCheckResult.collisionDetected) {
-            this->handleCollision(collider, collisionCheckResult.normal);
-            collider->getGameObject()->handleCollision(thisCollider, collisionCheckResult.normal);
+        auto collision = collider->checkCollision(thisCollider);
+        if (collision.isCollision) {
+            return collision;
         }
     }
 }
 
-void GameObject::handleCollision(Collider *collider, Vector &normal)
+void GameObject::handleCollision(Collision collision)
 {
     for (auto collisionHandler : this->collisionHandlers)
     {
-        collisionHandler->handleCollision(collider, normal);
+        collisionHandler->handleCollision(collision.colliderB, collision.normal);
     }
 }
 

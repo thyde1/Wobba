@@ -30,5 +30,14 @@ struct Vector {
         return { this->x / rhs, this->y / rhs };
     }
 
+    bool operator==(const Vector &rhs)
+    {
+        return this->x == rhs.x && this->y == rhs.y;
+    }
+
+    double magnitude();
+
+    double magnitudeSquared();
+
     Vector normalize();
 };
