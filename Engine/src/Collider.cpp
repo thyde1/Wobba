@@ -9,12 +9,12 @@ Collider::Collider(Size size) : size(size)
 {
 }
 
-void Collider::setGameObject(GameObject* gameObject)
+void Collider::setGameObject(GameObject *gameObject)
 {
     Component::setGameObject(gameObject);
 }
 
-Collision Collider::checkCollision(Collider* collider)
+Collision Collider::checkCollision(Collider *collider)
 {
     Vector thisPosition = this->gameObject->globalPosition;
     Vector thisVelocity = this->gameObject->velocity;

@@ -64,7 +64,7 @@ void GameObject::handleCollision(Collision collision)
 {
     for (auto collisionHandler : this->collisionHandlers)
     {
-        collisionHandler->handleCollision(collision.colliderB, collision.normal);
+        collisionHandler->handleCollision(collision);
     }
 }
 

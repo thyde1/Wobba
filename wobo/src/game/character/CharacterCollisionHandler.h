@@ -6,7 +6,7 @@
 class CharacterCollisionHandler : public CollisionHandler {
 public:
     CharacterCollisionHandler(CharacterInfo &characterInfo);
-    void handleCollision(Collider *collider, Vector &normal);
+    void handleCollision(Collision collision);
 private:
     CharacterInfo &characterInfo;
 };
