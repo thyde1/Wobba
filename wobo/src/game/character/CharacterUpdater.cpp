@@ -12,7 +12,8 @@ void CharacterUpdater::update(int elapsed)
     const double runAcceleration = 0.005;
     const int maxJumpDuration = 100;
     const double gravity = 0.001;
-    auto isGrounded = this->gameObject->game->checkCollisions(this->groundCollider).size() > 0;
+    auto groundCollisions = this->gameObject->game->checkCollisions(this->groundCollider);
+    auto isGrounded = groundCollisions.size() > 0;
 
     if (this->characterInfo.direction == Direction::LEFT) {
         this->gameObject->velocity.x = std::max(std::min(this->gameObject->velocity.x - elapsed * runAcceleration, 0.), -runSpeed);
@@ -43,6 +44,8 @@ void CharacterUpdater::update(int elapsed)
 
     if (!this->characterInfo.jumping && isGrounded) {
         this->gameObject->velocity.y = 0;
+        auto groundObject = groundCollisions.front().colliderB->getGameObject();
+        this->gameObject->globalPosition.y = groundObject->globalPosition.y - groundCollisions.front().colliderB->size.h;
     }
     else {
         this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, 0.9);
