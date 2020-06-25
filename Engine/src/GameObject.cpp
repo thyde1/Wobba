@@ -58,6 +58,8 @@ Collision GameObject::checkCollision(Collider *collider)
             return collision;
         }
     }
+
+    return Collision{ false };
 }
 
 void GameObject::handleCollision(Collision collision)

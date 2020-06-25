@@ -1,4 +1,6 @@
 #include <memory>
+#include <cmath>
+#include <iostream>
 #include "Game.h"
 #include "TextureManager.h"
 #include "Collider.h"
@@ -120,10 +122,18 @@ void Game::checkCollisions()
         collisions.sort([&](Collision &a, Collision &b) {
             auto collisionADistanceSquared = (a.colliderA->getGameObject()->globalPosition - a.colliderB->getGameObject()->globalPosition).magnitudeSquared();
             auto collisionBDistanceSquared = (b.colliderA->getGameObject()->globalPosition - b.colliderB->getGameObject()->globalPosition).magnitudeSquared();
-            return collisionADistanceSquared > collisionBDistanceSquared;
+            if (collisionADistanceSquared == collisionBDistanceSquared) {
+                return std::abs(a.normal.y) < std::abs(b.normal.y);
+            }
+
+
+            return collisionADistanceSquared < collisionBDistanceSquared;
         });
 
         for (auto &collision : collisions) {
+            if (collision.normal.x != 0.) {
+                auto x = 0;
+            }
             collision.colliderA->getGameObject()->handleCollision(collision);
         }
     }
