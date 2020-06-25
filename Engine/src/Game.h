@@ -7,6 +7,7 @@
 #include "GameObject.h"
 #include "TextureManager.h"
 #include "Size.h"
+#include "Vector.h"
 
 class Game {
 public:
