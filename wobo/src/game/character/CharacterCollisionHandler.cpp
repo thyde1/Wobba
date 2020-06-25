@@ -22,12 +22,15 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
     }
 
     if (normal.y != 0) {
-        std::cout << "y";
-        this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y - thisCollider->size.h;
+        if (normal.y < 0) {
+            this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y - thisCollider->size.h;
+        }
+        else {
+            this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y + collider->size.h;
+        }
     }
 
     if (normal.x != 0) {
-       std::cout << "x";
         if (normal.x < 0) {
             this->gameObject->globalPosition.x = collider->getGameObject()->globalPosition.x - this->characterInfo.size.w;
         }

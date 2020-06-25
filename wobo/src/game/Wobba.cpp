@@ -16,15 +16,13 @@ void Wobba::init()
     terrainFactory.create({ 400, 500 });
     terrainFactory.create({ 500, 500 });
     terrainFactory.create({ 600, 500 });
+    terrainFactory.create({ 700, 500 });
+    terrainFactory.create({ 800, 500 });
     terrainFactory.create({ 100, 500 });
     terrainFactory.create({ 200, 400 });
     terrainFactory.create({ 200, 300 });
     terrainFactory.create({ 200, 200 });
-    for (float x = 0; x + 8 <= 800; x += 8) {
-    }
-
-    for (float y = 400; y < 500; y += 8) {
-    }
+    terrainFactory.create({ 500, 300 });
 
     auto characterFactory = CharacterFactory(*this);
     characterFactory.create()->setGlobalPosition({ 50, 400 });

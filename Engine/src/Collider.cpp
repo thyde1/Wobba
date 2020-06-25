@@ -84,7 +84,7 @@ Vector Collider::getCollisionNormal(Size &sizeA, Vector &posA, Vector &velA, Siz
             return { 0, -1 };
         }
     }
-    else if (posA.y + sizeA.h <= posB.y) {
+    else if (posA.y >= posB.y + sizeB.h) {
         // Bottom side
         if (posA.x + sizeA.w < posB.x) {
             // Bottom left
