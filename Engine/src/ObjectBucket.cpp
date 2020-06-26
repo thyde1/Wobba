@@ -1,4 +1,5 @@
 #include "ObjectBucket.h"
+#include <iostream>
 
 ObjectBucket::ObjectBucket(int bucketSize) : bucketSize(bucketSize)
 {
@@ -26,6 +27,16 @@ std::list<GameObject *> ObjectBucket::get(Vector &location)
 
 void ObjectBucket::remove(GameObject *gameObject)
 {
+    auto bucketKey = (int)(gameObject->globalPosition.x / bucketSize);
+    auto bucket = this->gameObjectsByLocation[bucketKey];
+    for (auto object : bucket) {
+        if (object == gameObject) {
+            bucket.remove(object);
+            this->gameObjectsByLocation[bucketKey] = bucket;
+            return;
+        }
+    }
+
     for (auto bucket : this->gameObjectsByLocation) {
         bucket.second.remove(gameObject);
         this->gameObjectsByLocation[bucket.first] = bucket.second;

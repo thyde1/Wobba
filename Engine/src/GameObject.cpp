@@ -83,6 +83,7 @@ GameObject *GameObject::addUpdater(Updater *updater)
 {
     this->addComponent(updater);
     this->updaters.push_back(updater);
+    this->game->gameObjectsWithUpdaters.insert(this);
     return this;
 }
 
@@ -98,6 +99,7 @@ GameObject *GameObject::addInputHandler(InputHandler *inputHandler)
 {
     this->addComponent(inputHandler);
     this->inputHandlers.push_back(inputHandler);
+    this->game->gameObjectsWithInputHandlers.insert(this);
     return this;
 }
 
@@ -113,9 +115,6 @@ GameObject *GameObject::addCollider(ColliderType type, Collider *collider) {
     this->addComponent(collider);
     GameCollider* gameCollider = new GameCollider(type, collider);
     this->colliders.push_back(gameCollider);
-    if (type == ColliderType::ACTIVE) {
-        this->game->activeGameObjects.push_back(this);
-    }
 
     return this;
 }

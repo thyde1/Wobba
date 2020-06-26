@@ -1,6 +1,5 @@
 #include <memory>
 #include <cmath>
-#include <iostream>
 #include "Game.h"
 #include "TextureManager.h"
 #include "Collider.h"
@@ -32,7 +31,7 @@ void Game::sdlInit()
 void Game::start()
 {
     this->init();
-    const int fps = 60;
+    const int fps = 144;
     const int frameDelay = 1000 / fps;
 
     auto frameStart = SDL_GetTicks();
@@ -41,7 +40,7 @@ void Game::start()
         this->instantiateGameObjectsPendingInstantiation();
         auto runningTime = SDL_GetTicks();
         auto elapsed = runningTime - lastUpdate;
-        if (elapsed >= 10) {
+        if (elapsed >= 2) {
             this->handleInput();
             this->update(elapsed);
             destroyObjectsPendingDestruction();
@@ -76,16 +75,15 @@ void Game::handleInput()
         }
     }
 
-    for (GameObject* gameObject : this->gameObjects)
+    for (GameObject* gameObject : this->gameObjectsWithInputHandlers)
     {
-        
         gameObject->handleInput(keys);
     }
 }
 
 void Game::update(int elapsed)
 {
-    for(GameObject *gameObject : this->activeGameObjects)
+    for(GameObject *gameObject : this->gameObjectsWithUpdaters)
     {
         gameObject->update(elapsed);
     }
@@ -93,7 +91,7 @@ void Game::update(int elapsed)
 
 void Game::applyMovement(int elapsed)
 {
-    for (GameObject *gameObject : this->activeGameObjects) {
+    for (GameObject *gameObject : this->gameObjectsWithUpdaters) {
         auto deltaV = gameObject->velocity * elapsed;
         gameObject->globalPosition += deltaV;
     }
@@ -101,7 +99,7 @@ void Game::applyMovement(int elapsed)
 
 void Game::checkCollisions()
 {
-    for (GameObject *gameObject : this->activeGameObjects)
+    for (GameObject *gameObject : this->gameObjectsWithUpdaters)
     {
         std::list<Collision> collisions;
         auto nearbyGameObjects = this->gameObjectsByLocation.get(gameObject->globalPosition);
@@ -199,22 +197,19 @@ void Game::instantiateGameObjectsPendingInstantiation()
     }
 
     if (this->gameObjectsPendingInstantiation.size() > 0) {
-        std::cout << "+ " << this->gameObjectsPendingInstantiation.size() << "-" << SDL_GetTicks() - createStart << std::endl;
         this->gameObjectsPendingInstantiation.clear();
     }
 }
 
 void Game::destroyObjectsPendingDestruction()
 {
-    auto destroyStart = SDL_GetTicks();
     for (auto object : this->gameObjectsPendingDestruction) {
         this->gameObjects.remove(object);
-        this->activeGameObjects.remove(object);
+        this->gameObjectsWithUpdaters.erase(object);
+        this->gameObjectsWithInputHandlers.erase(object);
         this->gameObjectsByLocation.remove(object);
         delete object;
     }
-    if (this->gameObjectsPendingDestruction.size() > 0) {
-        std::cout << "-" << this->gameObjectsPendingDestruction.size() << "-" << SDL_GetTicks() - destroyStart << std::endl;
-    }
+
     this->gameObjectsPendingDestruction.clear();
 }

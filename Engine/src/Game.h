@@ -4,6 +4,7 @@
 #include "SDL_TTF.h"
 #include <stdio.h>
 #include <list>
+#include <set>
 #include "GameObject.h"
 #include "TextureManager.h"
 #include "Size.h"
@@ -27,8 +28,9 @@ public:
     void render();
     GameObject* instantiateObject();
     void destroyObject(GameObject* object);
-    std::list<GameObject*> gameObjects;
-    std::list<GameObject *> activeGameObjects;
+    std::list<GameObject *> gameObjects;
+    std::set<GameObject *> gameObjectsWithUpdaters;
+    std::set<GameObject *> gameObjectsWithInputHandlers;
     void reset();
     Vector cameraPosition;
 
