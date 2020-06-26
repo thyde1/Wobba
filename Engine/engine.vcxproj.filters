@@ -105,4 +105,7 @@
   <ItemGroup>
     <None Include="src\packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\verdana.ttf" />
+  </ItemGroup>
 </Project>

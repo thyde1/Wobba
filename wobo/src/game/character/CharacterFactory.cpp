@@ -1,6 +1,7 @@
 #include "CharacterFactory.h"
 #include "CharacterUpdater.h"
 #include "CameraUpdater.h"
+#include "DeathChecker.h"
 #include "CharacterInfo.h"
 #include "CharacterCollisionHandler.h"
 #include "CharacterInputHandler.h"
@@ -22,6 +23,7 @@ GameObject *CharacterFactory::create()
         ->addCollider(ColliderType::PASSIVE, groundCollider)
         ->addUpdater(new CharacterUpdater(*characterInfo, *groundCollider))
         ->addUpdater(new CameraUpdater())
+        ->addUpdater(new DeathChecker())
         ->addCollisionHandler(new CharacterCollisionHandler(*characterInfo))
         ->addInputHandler(new CharacterInputHandler(*characterInfo));
 }
