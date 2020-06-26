@@ -9,8 +9,10 @@ Wobba::Wobba() : Game("Wobba", { 1400, 900 })
 void Wobba::init()
 {
     auto terrainFactory = TerrainFactory(*this);
-    for (double x = 0; x < 6000; x += 100) {
-        terrainFactory.create({ x, 800 });
+    for (double x = 0; x < 60000; x += 100) {
+        if (x < 200 || rand() % 10 < 8) {
+            terrainFactory.create({ x, 800 });
+        }
     }
 
     terrainFactory.create({ 200, 700 });

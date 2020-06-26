@@ -8,6 +8,7 @@
 #include "TextureManager.h"
 #include "Size.h"
 #include "Vector.h"
+#include "ObjectBucket.h"
 
 class Game {
 public:
@@ -27,6 +28,7 @@ public:
     GameObject* instantiateObject();
     void destroyObject(GameObject* object);
     std::list<GameObject*> gameObjects;
+    std::list<GameObject *> activeGameObjects;
     Vector cameraPosition;
 
 private:
@@ -39,4 +41,5 @@ private:
     const char *title;
     bool isRunning;
     std::list<SDL_Keysym> keys;
+    ObjectBucket gameObjectsByLocation;
 };

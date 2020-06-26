@@ -5,6 +5,7 @@
 #include "Collider.h"
 #include "CollisionHandler.h"
 #include "Renderer.h"
+#include "Game.h"
 
 GameObject::GameObject(Game *game, SDL_Renderer *renderer) : globalPosition({0, 0}), velocity({0, 0})
 {
@@ -112,6 +113,10 @@ GameObject *GameObject::addCollider(ColliderType type, Collider *collider) {
     this->addComponent(collider);
     GameCollider* gameCollider = new GameCollider(type, collider);
     this->colliders.push_back(gameCollider);
+    if (type == ColliderType::ACTIVE) {
+        this->game->activeGameObjects.push_back(this);
+    }
+
     return this;
 }
 

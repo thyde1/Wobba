@@ -4,9 +4,8 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "Collider.h"
-#include "ObjectBucket.h"
 
-Game::Game(const char *title, Size windowSize) : windowSize(windowSize), title(title), isRunning(true), cameraPosition({ 0, 0 })
+Game::Game(const char *title, Size windowSize) : windowSize(windowSize), title(title), isRunning(true), cameraPosition({ 0, 0 }), gameObjectsByLocation(ObjectBucket(100))
 {
     this->sdlInit();
     this->textureManager = TextureManager(this->renderer);
@@ -102,15 +101,10 @@ void Game::applyMovement(int elapsed)
 
 void Game::checkCollisions()
 {
-    ObjectBucket gameObjectsByLocation(100);
-    for (GameObject *gameObject : this->gameObjects) {
-        gameObjectsByLocation.insert(gameObject);
-    }
-
-    for (GameObject *gameObject : this->gameObjects)
+    for (GameObject *gameObject : this->activeGameObjects)
     {
         std::list<Collision> collisions;
-        auto nearbyGameObjects = gameObjectsByLocation.get(gameObject->globalPosition);
+        auto nearbyGameObjects = this->gameObjectsByLocation.get(gameObject->globalPosition);
         for (GameObject *other : nearbyGameObjects) {
             if (other != gameObject) {
                 auto collision = gameObject->checkCollision(other);
@@ -191,6 +185,7 @@ void Game::instantiateGameObjectsPendingInstantiation()
 {
     for (auto object : this->gameObjectsPendingInstantiation) {
         this->gameObjects.push_back(object);
+        this->gameObjectsByLocation.insert(object);
     }
 
     this->gameObjectsPendingInstantiation.clear();
