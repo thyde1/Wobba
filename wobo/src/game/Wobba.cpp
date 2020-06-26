@@ -2,22 +2,17 @@
 #include "terrain/TerrainFactory.h"
 #include "character/CharacterFactory.h"
 
-Wobba::Wobba() : Game("Wobba", { 800, 600 })
+Wobba::Wobba() : Game("Wobba", { 1400, 900 })
 {
 }
 
 void Wobba::init()
 {
     auto terrainFactory = TerrainFactory(*this);
-    terrainFactory.create({ 0, 500 });
-    terrainFactory.create({ 100, 500 });
-    terrainFactory.create({ 200, 500 });
-    terrainFactory.create({ 300, 500 });
-    terrainFactory.create({ 400, 500 });
-    terrainFactory.create({ 500, 500 });
-    terrainFactory.create({ 600, 500 });
-    terrainFactory.create({ 700, 500 });
-    terrainFactory.create({ 800, 500 });
+    for (double x = 0; x < 2400; x += 100) {
+        terrainFactory.create({ x, 500 });
+    }
+
     terrainFactory.create({ 100, 500 });
     terrainFactory.create({ 200, 400 });
     terrainFactory.create({ 200, 300 });

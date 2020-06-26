@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "Collider.h"
+#include "ObjectBucket.h"
 
 Game::Game(const char *title, Size windowSize) : windowSize(windowSize), title(title), isRunning(true)
 {
@@ -101,10 +102,16 @@ void Game::applyMovement(int elapsed)
 
 void Game::checkCollisions()
 {
+    ObjectBucket gameObjectsByLocation(100);
+    for (GameObject *gameObject : this->gameObjects) {
+        gameObjectsByLocation.insert(gameObject);
+    }
+
     for (GameObject *gameObject : this->gameObjects)
     {
         std::list<Collision> collisions;
-        for (GameObject *other : gameObjects) {
+        auto nearbyGameObjects = gameObjectsByLocation.get(gameObject->globalPosition);
+        for (GameObject *other : nearbyGameObjects) {
             if (other != gameObject) {
                 auto collision = gameObject->checkCollision(other);
                 if (collision.isCollision) {

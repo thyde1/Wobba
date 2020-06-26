@@ -147,6 +147,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameCollider.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\ObjectBucket.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\renderers\SpriteRenderer.cpp" />
     <ClCompile Include="src\renderers\TextRenderer.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="src\GameCollider.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\InputHandler.h" />
+    <ClInclude Include="src\ObjectBucket.h" />
     <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\renderers\SpriteRenderer.h" />
