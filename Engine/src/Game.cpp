@@ -76,7 +76,7 @@ void Game::handleInput()
         }
     }
 
-    for (GameObject* gameObject : this->gameObjects)
+    for (GameObject* gameObject : this->activeGameObjects)
     {
         
         gameObject->handleInput(keys);
@@ -85,7 +85,7 @@ void Game::handleInput()
 
 void Game::update(int elapsed)
 {
-    for(GameObject *gameObject : this->gameObjects)
+    for(GameObject *gameObject : this->activeGameObjects)
     {
         gameObject->update(elapsed);
     }
@@ -93,7 +93,7 @@ void Game::update(int elapsed)
 
 void Game::applyMovement(int elapsed)
 {
-    for (GameObject *gameObject : this->gameObjects) {
+    for (GameObject *gameObject : this->activeGameObjects) {
         auto deltaV = gameObject->velocity * elapsed;
         gameObject->globalPosition += deltaV;
     }

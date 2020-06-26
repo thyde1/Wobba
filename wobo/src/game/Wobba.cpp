@@ -15,7 +15,7 @@ void Wobba::init()
         }
 
         for (double y = 500; y <= 700; y += 100) {
-            if (x > 200 && rand() % 10 < 1) {
+            if (x > 200 && rand() % 10 < 3) {
                 terrainFactory.create({ x, y });
             }
         }
