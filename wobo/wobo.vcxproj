@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\character\CameraUpdater.cpp" />
     <ClCompile Include="src\game\character\CharacterCollisionHandler.cpp" />
     <ClCompile Include="src\game\character\CharacterFactory.cpp" />
     <ClCompile Include="src\game\character\CharacterInputHandler.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="src\game\Wobba.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\character\CameraUpdater.h" />
     <ClInclude Include="src\game\character\CharacterCollisionHandler.h" />
     <ClInclude Include="src\game\character\CharacterFactory.h" />
     <ClInclude Include="src\game\character\CharacterInfo.h" />

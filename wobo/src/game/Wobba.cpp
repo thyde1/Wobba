@@ -10,7 +10,7 @@ void Wobba::init()
 {
     auto terrainFactory = TerrainFactory(*this);
     for (double x = 0; x < 60000; x += 100) {
-        if (x < 200 || rand() % 10 < 5) {
+        if (x < 200 || rand() % 10 < 4) {
             terrainFactory.create({ x, 800 });
         }
 
