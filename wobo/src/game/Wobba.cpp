@@ -1,6 +1,7 @@
 #include "Wobba.h"
 #include "terrain/TerrainFactory.h"
 #include "character/CharacterFactory.h"
+#include <iostream>
 
 Wobba::Wobba() : Game("Wobba", { 1400, 900 })
 {

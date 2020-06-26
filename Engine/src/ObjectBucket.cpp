@@ -23,3 +23,11 @@ std::list<GameObject *> ObjectBucket::get(Vector &location)
 
     return result;
 }
+
+void ObjectBucket::remove(GameObject *gameObject)
+{
+    for (auto bucket : this->gameObjectsByLocation) {
+        bucket.second.remove(gameObject);
+        this->gameObjectsByLocation[bucket.first] = bucket.second;
+    }
+}

@@ -76,7 +76,7 @@ void Game::handleInput()
         }
     }
 
-    for (GameObject* gameObject : this->activeGameObjects)
+    for (GameObject* gameObject : this->gameObjects)
     {
         
         gameObject->handleInput(keys);
@@ -145,7 +145,7 @@ std::list<Collision> Game::checkCollisions(Collider collider)
         if (other != collider.getGameObject()) {
             auto collision = other->checkCollision(collider);
             if (collision.isCollision) {
-                collisions.push_front(collision);
+                collisions.push_back(collision);
             }
         }
     }
@@ -175,6 +175,15 @@ void Game::destroyObject(GameObject* object)
     this->gameObjectsPendingDestruction.push_back(object);
 }
 
+void Game::reset()
+{
+    for (auto gameObject : this->gameObjects) {
+        this->destroyObject(gameObject);
+    }
+
+    this->init();
+}
+
 void Game::clearScreen()
 {
     SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
@@ -183,19 +192,29 @@ void Game::clearScreen()
 
 void Game::instantiateGameObjectsPendingInstantiation()
 {
+    auto createStart = SDL_GetTicks();
     for (auto object : this->gameObjectsPendingInstantiation) {
         this->gameObjects.push_back(object);
         this->gameObjectsByLocation.insert(object);
     }
 
-    this->gameObjectsPendingInstantiation.clear();
+    if (this->gameObjectsPendingInstantiation.size() > 0) {
+        std::cout << "+ " << this->gameObjectsPendingInstantiation.size() << "-" << SDL_GetTicks() - createStart << std::endl;
+        this->gameObjectsPendingInstantiation.clear();
+    }
 }
 
 void Game::destroyObjectsPendingDestruction()
 {
+    auto destroyStart = SDL_GetTicks();
     for (auto object : this->gameObjectsPendingDestruction) {
         this->gameObjects.remove(object);
+        this->activeGameObjects.remove(object);
+        this->gameObjectsByLocation.remove(object);
         delete object;
+    }
+    if (this->gameObjectsPendingDestruction.size() > 0) {
+        std::cout << "-" << this->gameObjectsPendingDestruction.size() << "-" << SDL_GetTicks() - destroyStart << std::endl;
     }
     this->gameObjectsPendingDestruction.clear();
 }

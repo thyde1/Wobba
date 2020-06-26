@@ -153,6 +153,7 @@
     <ClCompile Include="src\game\character\CharacterFactory.cpp" />
     <ClCompile Include="src\game\character\CharacterInputHandler.cpp" />
     <ClCompile Include="src\game\character\CharacterUpdater.cpp" />
+    <ClCompile Include="src\game\character\DeadInputHandler.cpp" />
     <ClCompile Include="src\game\character\DeadRenderer.cpp" />
     <ClCompile Include="src\game\character\DeathChecker.cpp" />
     <ClCompile Include="src\game\terrain\TerrainFactory.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\game\character\CharacterInfo.h" />
     <ClInclude Include="src\game\character\CharacterInputHandler.h" />
     <ClInclude Include="src\game\character\CharacterUpdater.h" />
+    <ClInclude Include="src\game\character\DeadInputHandler.h" />
     <ClInclude Include="src\game\character\DeadRenderer.h" />
     <ClInclude Include="src\game\character\DeathChecker.h" />
     <ClInclude Include="src\game\Direction.h" />

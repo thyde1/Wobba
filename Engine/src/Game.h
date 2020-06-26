@@ -29,6 +29,7 @@ public:
     void destroyObject(GameObject* object);
     std::list<GameObject*> gameObjects;
     std::list<GameObject *> activeGameObjects;
+    void reset();
     Vector cameraPosition;
 
 private:

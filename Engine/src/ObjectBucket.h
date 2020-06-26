@@ -9,6 +9,7 @@ public:
     ObjectBucket(int bucketSize);
     void insert(GameObject *gameObject);
     std::list<GameObject*> get(Vector &location);
+    void remove(GameObject *gameObject);
 
 private:
     int bucketSize;
