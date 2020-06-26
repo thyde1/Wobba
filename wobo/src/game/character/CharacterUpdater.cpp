@@ -50,4 +50,6 @@ void CharacterUpdater::update(int elapsed)
     else {
         this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, 2.);
     }
+
+    this->gameObject->game->cameraPosition = Vector{ this->gameObject->globalPosition.x - 500, 0 };
 }

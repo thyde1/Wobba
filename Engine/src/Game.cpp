@@ -6,7 +6,7 @@
 #include "Collider.h"
 #include "ObjectBucket.h"
 
-Game::Game(const char *title, Size windowSize) : windowSize(windowSize), title(title), isRunning(true)
+Game::Game(const char *title, Size windowSize) : windowSize(windowSize), title(title), isRunning(true), cameraPosition({ 0, 0 })
 {
     this->sdlInit();
     this->textureManager = TextureManager(this->renderer);

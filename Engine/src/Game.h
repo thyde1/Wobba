@@ -27,6 +27,7 @@ public:
     GameObject* instantiateObject();
     void destroyObject(GameObject* object);
     std::list<GameObject*> gameObjects;
+    Vector cameraPosition;
 
 private:
     SDL_Renderer* renderer;
