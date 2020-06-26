@@ -10,15 +10,16 @@ void Wobba::init()
 {
     auto terrainFactory = TerrainFactory(*this);
     for (double x = 0; x < 60000; x += 100) {
-        if (x < 200 || rand() % 10 < 8) {
+        if (x < 200 || rand() % 10 < 5) {
             terrainFactory.create({ x, 800 });
         }
-    }
 
-    terrainFactory.create({ 200, 700 });
-    terrainFactory.create({ 200, 600 });
-    terrainFactory.create({ 200, 500 });
-    terrainFactory.create({ 500, 300 });
+        for (double y = 500; y <= 700; y += 100) {
+            if (x > 200 && rand() % 10 < 1) {
+                terrainFactory.create({ x, y });
+            }
+        }
+    }
 
     auto characterFactory = CharacterFactory(*this);
     characterFactory.create()->setGlobalPosition({ 50, 400 });
