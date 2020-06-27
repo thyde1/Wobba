@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wobo", "wobo\wobo.vcxproj", "{D4075F00-6B40-4D85-9A4F-0EC4826287C7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Wobba", "Wobba\Wobba.vcxproj", "{D4075F00-6B40-4D85-9A4F-0EC4826287C7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine", "engine\engine.vcxproj", "{B24CD978-2860-4AE2-AEFC-F2A7637F89CF}"
 EndProject
