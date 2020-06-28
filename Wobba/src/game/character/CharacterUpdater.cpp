@@ -36,7 +36,6 @@ void CharacterUpdater::update(int elapsed)
     if (this->characterInfo.jumping && isGrounded) {
         this->gameObject->velocity.y = -jumpStrength;
         this->jumpDuration = 0;
-        this->characterInfo.isGrounded = false;
     }
 
     if (this->characterInfo.jumpHeld && this->jumpDuration >= 0 && this->jumpDuration < maxJumpDuration) {
@@ -56,4 +55,6 @@ void CharacterUpdater::update(int elapsed)
     else {
         this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, 2.);
     }
+
+    this->characterInfo.isGrounded = isGrounded;
 }

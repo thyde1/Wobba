@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "renderers/SpriteRenderer.h"
+#include "renderers/AnimatedSpriteRenderer.h"
 #include "renderers/TextRenderer.h"
 #include "Updater.h"
 #include "Collider.h"

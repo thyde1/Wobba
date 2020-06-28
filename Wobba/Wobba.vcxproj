@@ -152,6 +152,7 @@
     <ClCompile Include="src\game\character\CharacterCollisionHandler.cpp" />
     <ClCompile Include="src\game\character\CharacterFactory.cpp" />
     <ClCompile Include="src\game\character\CharacterInputHandler.cpp" />
+    <ClCompile Include="src\game\character\CharacterRenderer.cpp" />
     <ClCompile Include="src\game\character\CharacterUpdater.cpp" />
     <ClCompile Include="src\game\character\DeadInputHandler.cpp" />
     <ClCompile Include="src\game\character\DeadRenderer.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="src\game\character\CharacterFactory.h" />
     <ClInclude Include="src\game\character\CharacterInfo.h" />
     <ClInclude Include="src\game\character\CharacterInputHandler.h" />
+    <ClInclude Include="src\game\character\CharacterRenderer.h" />
     <ClInclude Include="src\game\character\CharacterUpdater.h" />
     <ClInclude Include="src\game\character\DeadInputHandler.h" />
     <ClInclude Include="src\game\character\DeadRenderer.h" />

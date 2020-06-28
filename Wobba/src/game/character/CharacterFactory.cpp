@@ -5,6 +5,7 @@
 #include "CharacterInfo.h"
 #include "CharacterCollisionHandler.h"
 #include "CharacterInputHandler.h"
+#include "CharacterRenderer.h"
 
 CharacterFactory::CharacterFactory(Game &game) : game(game)
 {
@@ -19,7 +20,7 @@ GameObject *CharacterFactory::create()
         ->setGlobalPosition({ 15, 15 })
         ->addComponent(characterInfo)
         ->addComponent(groundCollider)
-        ->addRenderer(new SpriteRenderer("assets/character.png"))
+        ->addRenderer(new CharacterRenderer(characterInfo))
         ->addCollider(ColliderType::ACTIVE, new Collider(characterInfo->size))
         ->addCollider(ColliderType::PASSIVE, groundCollider)
         ->addUpdater(new CharacterUpdater(*characterInfo, *groundCollider))

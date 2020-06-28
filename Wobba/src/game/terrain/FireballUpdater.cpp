@@ -1,7 +1,7 @@
 #include "FireballUpdater.h"
 #include <cmath>
 
-FireballUpdater::FireballUpdater(double xCenter, double startingProgress) : xCenter(xCenter), currentPhaseDuration(startingProgress * this->phaseMilliseconds)
+FireballUpdater::FireballUpdater(double xCenter, double startingProgress) : xCenter(xCenter), currentPhaseDuration((int)(startingProgress * this->phaseMilliseconds))
 {
 }
 
