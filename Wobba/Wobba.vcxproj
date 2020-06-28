@@ -156,6 +156,7 @@
     <ClCompile Include="src\game\character\DeadInputHandler.cpp" />
     <ClCompile Include="src\game\character\DeadRenderer.cpp" />
     <ClCompile Include="src\game\character\DeathChecker.cpp" />
+    <ClCompile Include="src\game\terrain\LavaFactory.cpp" />
     <ClCompile Include="src\game\terrain\TerrainFactory.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\game\Wobba.cpp" />
@@ -171,6 +172,9 @@
     <ClInclude Include="src\game\character\DeadRenderer.h" />
     <ClInclude Include="src\game\character\DeathChecker.h" />
     <ClInclude Include="src\game\Direction.h" />
+    <ClInclude Include="src\game\terrain\Damager.h" />
+    <ClInclude Include="src\game\terrain\LavaFactory.h" />
+    <ClInclude Include="src\game\terrain\SafeSurface.h" />
     <ClInclude Include="src\game\terrain\TerrainFactory.h" />
     <ClInclude Include="src\game\Wobba.h" />
   </ItemGroup>

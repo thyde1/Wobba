@@ -1,5 +1,6 @@
 #include "CharacterCollisionHandler.h"
 #include <iostream>
+#include "../terrain/Damager.h"
 
 CharacterCollisionHandler::CharacterCollisionHandler(CharacterInfo &characterInfo) : characterInfo(characterInfo)
 {
@@ -19,6 +20,11 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
     if (collider->getGameObject() == this->getGameObject()) {
         // Don't collide with one of our own colliders
         return;
+    }
+
+    if (collider->getGameObject()->hasComponent<Damager>()) {
+        auto characterInfo = this->gameObject->getComponent<CharacterInfo>();
+        characterInfo->alive = false;
     }
 
     if (normal.y != 0) {

@@ -9,4 +9,5 @@ public:
     Direction direction = Direction::NONE;
     bool jumping = false;
     bool jumpHeld = false;
+    bool alive = true;
 };

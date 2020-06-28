@@ -9,5 +9,5 @@ public:
     virtual void render();
     void setSdlRenderer(SDL_Renderer *sdlRenderer);
 protected:
-    SDL_Renderer *sdlRenderer;
+    SDL_Renderer *sdlRenderer = nullptr;
 };

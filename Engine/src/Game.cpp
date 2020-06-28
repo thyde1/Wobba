@@ -138,8 +138,9 @@ void Game::checkCollisions()
 
 std::list<Collision> Game::checkCollisions(Collider collider)
 {
+    auto nearbyGameObjects = this->gameObjectsByLocation.get(collider.getGameObject()->globalPosition);
     std::list<Collision> collisions;
-    for (GameObject *other : gameObjects) {
+    for (GameObject *other : nearbyGameObjects) {
         if (other != collider.getGameObject()) {
             auto collision = other->checkCollision(collider);
             if (collision.isCollision) {

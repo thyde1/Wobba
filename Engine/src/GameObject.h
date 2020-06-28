@@ -42,11 +42,17 @@ public:
     }
     GameObject* setGlobalPosition(Vector position);
     template <class T>
-    T getComponent()
+    bool hasComponent()
+    {
+        auto componentTypeId = getComponentTypeId<T>();
+        return this->componentsBitset[componentTypeId];
+    }
+    template <class T>
+    T* getComponent()
     {
         auto componentTypeId = getComponentTypeId<T>();
         if (this->componentsBitset[componentTypeId]) {
-            return this->components[componentTypeId];
+            return (T*)this->components[componentTypeId];
         }
 
         return NULL;

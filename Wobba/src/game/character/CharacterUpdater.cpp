@@ -1,5 +1,6 @@
 #include "CharacterUpdater.h"
 #include <algorithm>
+#include "../terrain/SafeSurface.h"
 
 CharacterUpdater::CharacterUpdater(CharacterInfo &characterInfo, Collider &groundCollider) : characterInfo(characterInfo), groundCollider(groundCollider)
 {
@@ -13,7 +14,12 @@ void CharacterUpdater::update(int elapsed)
     const int maxJumpDuration = 100;
     const double gravity = 0.01;
     auto groundCollisions = this->gameObject->game->checkCollisions(this->groundCollider);
-    auto isGrounded = groundCollisions.size() > 0;
+    bool isGrounded = false;
+    for (auto collider : groundCollisions) {
+        if (collider.colliderB->getGameObject()->hasComponent<SafeSurface>()) {
+            isGrounded = true;
+        }
+    }
 
     if (this->characterInfo.direction == Direction::LEFT) {
         this->gameObject->velocity.x = std::max(std::min(this->gameObject->velocity.x - elapsed * runAcceleration, 0.), -runSpeed);
