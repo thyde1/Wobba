@@ -13,14 +13,14 @@ CharacterFactory::CharacterFactory(Game &game) : game(game)
 GameObject *CharacterFactory::create()
 {
     auto characterInfo = new CharacterInfo;
-    auto groundCollider = new Collider(Size{ 80, 1 }, { 0, 80 });
+    auto groundCollider = new Collider(Size{ characterInfo->size.w, 1 }, { 0, (double)characterInfo->size.h });
 
     return this->game.instantiateObject()
         ->setGlobalPosition({ 15, 15 })
         ->addComponent(characterInfo)
         ->addComponent(groundCollider)
         ->addRenderer(new SpriteRenderer("assets/character.png"))
-        ->addCollider(ColliderType::ACTIVE, new Collider(Size{ 80, 80 }))
+        ->addCollider(ColliderType::ACTIVE, new Collider(characterInfo->size))
         ->addCollider(ColliderType::PASSIVE, groundCollider)
         ->addUpdater(new CharacterUpdater(*characterInfo, *groundCollider))
         ->addUpdater(new CameraUpdater())
