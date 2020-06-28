@@ -4,10 +4,13 @@
 #include "Size.h"
 #include "Vector.h"
 
+class Collider;
+
 struct CollisionCheckResult {
     bool collisionDetected;
     Vector normal;
 };
+
 
 struct Collision
 {

@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <list>
 #include <set>
-#include "GameObject.h"
 #include "TextureManager.h"
 #include "Size.h"
 #include "Vector.h"

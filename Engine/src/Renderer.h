@@ -1,7 +1,7 @@
 #pragma once
-#include "GameObject.h"
-#include "Component.h"
+
 #include "SDL.h"
+#include "Component.h"
 
 class Renderer : public Component {
 public:

@@ -17,7 +17,7 @@ GameObject::~GameObject()
 {
     for (auto component : this->components)
     {
-        delete component;
+        delete component.second;
     }
 }
 
@@ -116,13 +116,6 @@ GameObject *GameObject::addCollider(ColliderType type, Collider *collider) {
     GameCollider* gameCollider = new GameCollider(type, collider);
     this->colliders.push_back(gameCollider);
 
-    return this;
-}
-
-GameObject *GameObject::addComponent(Component *component)
-{
-    component->setGameObject(this);
-    this->components.push_back(component);
     return this;
 }
 

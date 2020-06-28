@@ -2,6 +2,8 @@
 
 #include "SDL.h"
 #include <list>
+#include <map>
+#include <bitset>
 #include "Vector.h"
 #include "GameCollider.h"
 
@@ -29,17 +31,22 @@ public:
     GameObject* addInputHandler(InputHandler *inputHandler);
     GameObject* addCollisionHandler(CollisionHandler *collisionHandler);
     GameObject* addCollider(ColliderType type, Collider *collider);
-    GameObject* addComponent(Component *component);
+    template <typename T>
+    GameObject * addComponent(T *component)
+    {
+        component->setGameObject(this);
+        auto componentTypeId = getComponentTypeId<T>();
+        this->components.insert({ componentTypeId, component });
+        this->componentsBitset.set(componentTypeId, true);
+        return this;
+    }
     GameObject* setGlobalPosition(Vector position);
     template <class T>
     T getComponent()
     {
-        for (auto component : this->components)
-        {
-            T castComponent = dynamic_cast<T>(component);
-            if (castComponent != NULL) {
-                return castComponent;
-            }
+        auto componentTypeId = getComponentTypeId<T>();
+        if (this->componentsBitset[componentTypeId]) {
+            return this->components[componentTypeId];
         }
 
         return NULL;
@@ -48,10 +55,23 @@ public:
     Vector velocity;
 private:
     SDL_Renderer *sdlRenderer;
-    std::list<Updater*> updaters;
-    std::list<Renderer*> renderers;
-    std::list<InputHandler*> inputHandlers;
-    std::list<CollisionHandler*> collisionHandlers;
-    std::list<GameCollider*> colliders;
-    std::list<Component*> components;
+    std::list<Updater *> updaters;
+    std::list<Renderer *> renderers;
+    std::list<InputHandler *> inputHandlers;
+    std::list<CollisionHandler *> collisionHandlers;
+    std::list<GameCollider *> colliders;
+    std::map<int, Component *> components;
+    std::bitset<128> componentsBitset;
+    static int getNewComponentTypeId()
+    {
+        static int lastId = 0;
+        return lastId++;
+    }
+
+    template <typename T>
+    static int getComponentTypeId()
+    {
+        static int typeId = getNewComponentTypeId();
+        return typeId;
+    };
 };

@@ -1,6 +1,7 @@
 #include "TextRenderer.h"
 #include <string>
 #include <vector>
+#include "../GameObject.h"
 
 TextRenderer::TextRenderer(SDL_Color color, TextAlignment alignment, std::vector<const char *> text)
     : color(color), font(TTF_OpenFont("assets/verdana.ttf", 20)), width(400), alignment(alignment), text(text)
