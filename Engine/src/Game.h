@@ -30,6 +30,7 @@ public:
     std::list<GameObject *> gameObjects;
     std::set<GameObject *> gameObjectsWithUpdaters;
     std::set<GameObject *> gameObjectsWithInputHandlers;
+    std::set<GameObject *> gameObjectsReceivingCollisions;
     void reset();
     Vector cameraPosition;
 

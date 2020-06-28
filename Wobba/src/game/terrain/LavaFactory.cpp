@@ -9,7 +9,7 @@ GameObject *LavaFactory::create(Vector position)
 {
     return this->game.instantiateObject()
         ->setGlobalPosition(position)
-        ->addRenderer(new SpriteRenderer("assets/Lava.png"))
+        ->addRenderer(new SpriteRenderer("assets/lava.png"))
         ->addCollider(ColliderType::PASSIVE, new Collider(Size{ 100, 100 }))
         ->addComponent(new Damager());
 }

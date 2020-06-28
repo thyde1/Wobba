@@ -115,6 +115,9 @@ GameObject *GameObject::addCollider(ColliderType type, Collider *collider) {
     this->addComponent(collider);
     GameCollider* gameCollider = new GameCollider(type, collider);
     this->colliders.push_back(gameCollider);
+    if (type == ColliderType::ACTIVE) {
+        this->game->gameObjectsReceivingCollisions.insert(this);
+    }
 
     return this;
 }

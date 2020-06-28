@@ -1,5 +1,6 @@
 #include <memory>
 #include <cmath>
+#include <iostream>
 #include "Game.h"
 #include "TextureManager.h"
 #include "Collider.h"
@@ -99,7 +100,7 @@ void Game::applyMovement(int elapsed)
 
 void Game::checkCollisions()
 {
-    for (GameObject *gameObject : this->gameObjectsWithUpdaters)
+    for (GameObject *gameObject : this->gameObjectsReceivingCollisions)
     {
         std::list<Collision> collisions;
         auto nearbyGameObjects = this->gameObjectsByLocation.get(gameObject->globalPosition);
@@ -207,6 +208,7 @@ void Game::destroyObjectsPendingDestruction()
     for (auto object : this->gameObjectsPendingDestruction) {
         this->gameObjects.remove(object);
         this->gameObjectsWithUpdaters.erase(object);
+        this->gameObjectsReceivingCollisions.erase(object);
         this->gameObjectsWithInputHandlers.erase(object);
         this->gameObjectsByLocation.remove(object);
         delete object;
