@@ -57,6 +57,9 @@
     <ClCompile Include="src\game\terrain\FireballUpdater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\terrain\BackgroundRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\terrain\FireballUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\terrain\BackgroundRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

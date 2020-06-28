@@ -1,4 +1,5 @@
 #include "Wobba.h"
+#include "terrain/BackgroundRenderer.h"
 #include "terrain/TerrainFactory.h"
 #include "terrain/LavaFactory.h"
 #include "terrain/FireballFactory.h"
@@ -11,6 +12,8 @@ Wobba::Wobba() : Game("Wobba", { 1400, 900 })
 
 void Wobba::init()
 {
+    this->instantiateObject()->addRenderer(new BackgroundRenderer());
+
     auto terrainFactory = TerrainFactory(*this);
     auto lavaFactory = LavaFactory(*this);
     auto fireballFactory = FireballFactory(*this);
@@ -20,12 +23,12 @@ void Wobba::init()
             terrainFactory.create({ x, 800 });
         }
 
-        if (x >= 200 && random <= 7) {
-            lavaFactory.create({ x, 850 });
+        if (x >= 200 && random == 0) {
+            fireballFactory.create({ x + 25, 1000 });
         }
 
-        if (x >= 200 && random == 0) {
-            fireballFactory.create({ x + 25, (double)(rand() % 800) });
+        if (x >= 200 && random <= 7) {
+            lavaFactory.create({ x, 850 });
         }
 
         for (double y = 500; y <= 700; y += 100) {

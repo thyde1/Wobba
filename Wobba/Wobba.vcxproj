@@ -156,6 +156,7 @@
     <ClCompile Include="src\game\character\DeadInputHandler.cpp" />
     <ClCompile Include="src\game\character\DeadRenderer.cpp" />
     <ClCompile Include="src\game\character\DeathChecker.cpp" />
+    <ClCompile Include="src\game\terrain\BackgroundRenderer.cpp" />
     <ClCompile Include="src\game\terrain\FireballFactory.cpp" />
     <ClCompile Include="src\game\terrain\FireballUpdater.cpp" />
     <ClCompile Include="src\game\terrain\LavaFactory.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="src\game\character\DeadRenderer.h" />
     <ClInclude Include="src\game\character\DeathChecker.h" />
     <ClInclude Include="src\game\Direction.h" />
+    <ClInclude Include="src\game\terrain\BackgroundRenderer.h" />
     <ClInclude Include="src\game\terrain\Damager.h" />
     <ClInclude Include="src\game\terrain\FireballFactory.h" />
     <ClInclude Include="src\game\terrain\FireballUpdater.h" />
