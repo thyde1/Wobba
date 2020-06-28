@@ -2,7 +2,7 @@
 
 CharacterRenderer::CharacterRenderer(CharacterInfo *characterInfo) :
     AnimatedSpriteRenderer(
-        "assets/character2.png",
+        "assets/character.png",
         { 8, 8 },
         { 80, 80 }),
     characterInfo(characterInfo)
@@ -12,8 +12,16 @@ CharacterRenderer::CharacterRenderer(CharacterInfo *characterInfo) :
 Animation CharacterRenderer::getAnimation()
 {
     if (!this->characterInfo->isGrounded) {
-        return jumping;
+        switch (this->characterInfo->direction) {
+        case Direction::LEFT:
+            return jumpingLeft;
+        case Direction::RIGHT:
+            return jumpingRight;
+        default:
+            return jumpingUp;
+        }
     }
+
     switch (this->characterInfo->direction) {
     case Direction::LEFT:
         return walkingLeft;
