@@ -1,8 +1,8 @@
 #include "AnimatedSpriteRenderer.h"
 #include "../Game.h"
 
-AnimatedSpriteRenderer::AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize, std::map<const char *, Animation> animations)
-    : imagePath(imagePath), frameSize{ frameSize }, destSize(destSize), animations{ animations }, texture(NULL), textureRect{ NULL }
+AnimatedSpriteRenderer::AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize)
+    : imagePath(imagePath), frameSize{ frameSize }, destSize(destSize), texture(NULL), textureRect{ NULL }
 {
 }
 
@@ -16,9 +16,8 @@ void AnimatedSpriteRenderer::render()
 
     auto ticks = SDL_GetTicks();
     this->elapsed += ticks - prevFrame;
-    auto animationName = this->getAnimation();
-    auto animation = this->animations[animationName];
-    auto currentFrame = (this->elapsed / 100) % animation.frameCount + this->animations[this->getAnimation()].startFrame;
+    auto animation = this->getAnimation();
+    auto currentFrame = (this->elapsed / 100) % animation.frameCount + animation.startFrame;
     auto cameraPosition = this->gameObject->game->cameraPosition;
 
     SDL_Rect srcRect = { currentFrame * this->frameSize.w, 0, this->frameSize.w, this->frameSize.h };

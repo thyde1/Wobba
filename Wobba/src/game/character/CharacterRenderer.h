@@ -8,9 +8,10 @@ public:
     CharacterRenderer(CharacterInfo *characterInfo);
 private:
     CharacterInfo *characterInfo;
-    const char *getAnimation();
-    const char *jumping = "Jumping";
-    const char *walkingLeft = "WalkingLeft";
-    const char *walkingRight = "WalkingRight";
-    const char *idle = "Idle";
+    Animation getAnimation();
+    const Animation
+        idle = { 0, 1, false },
+        walkingRight = { 1, 8, false },
+        walkingLeft = { 1, 8, true }, 
+        jumping = { 9, 2, true };
 };

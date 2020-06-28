@@ -1,6 +1,5 @@
 #pragma once
 
-#include <map>
 #include "../Renderer.h"
 #include "../Size.h"
 
@@ -12,11 +11,10 @@ struct Animation {
 
 class AnimatedSpriteRenderer : public Renderer {
 public:
-    AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize, std::map<const char *, Animation> animations);
+    AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize);
     void render();
 private:
-    virtual const char *getAnimation() = 0;
-    std::map<const char *, Animation> animations;
+    virtual Animation getAnimation() = 0;
     Size frameSize;
     int frameCount;
     Size destSize;
