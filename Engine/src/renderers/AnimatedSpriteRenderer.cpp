@@ -1,8 +1,12 @@
 #include "AnimatedSpriteRenderer.h"
 #include "../Game.h"
 
-AnimatedSpriteRenderer::AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize)
-    : imagePath(imagePath), frameSize{ frameSize }, destSize(destSize), texture(NULL), textureRect{ NULL }
+AnimatedSpriteRenderer::AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize, int frameCount)
+    : imagePath(imagePath), frameSize{ frameSize }, destSize(destSize), frameCount(frameCount), texture(NULL), textureRect{ NULL }
+{
+}
+
+AnimatedSpriteRenderer::AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize) : AnimatedSpriteRenderer(imagePath, frameSize, destSize, 0)
 {
 }
 
@@ -24,4 +28,9 @@ void AnimatedSpriteRenderer::render()
     SDL_Rect destRect = { (int)(this->gameObject->globalPosition.x - cameraPosition.x), (int)(this->gameObject->globalPosition.y - cameraPosition.y), this->destSize.w, this->destSize.h };
     SDL_RenderCopyEx(this->sdlRenderer, texture, &srcRect, &destRect, NULL, &this->center, animation.flippedHorizontal ? SDL_RendererFlip::SDL_FLIP_HORIZONTAL : SDL_RendererFlip::SDL_FLIP_NONE);
     this->prevFrame = ticks;
+}
+
+Animation AnimatedSpriteRenderer::getAnimation()
+{
+    return Animation{0, this->frameCount, false};
 }

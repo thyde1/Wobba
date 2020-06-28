@@ -11,12 +11,13 @@ struct Animation {
 
 class AnimatedSpriteRenderer : public Renderer {
 public:
+    AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize, int frameCount);
     AnimatedSpriteRenderer(const char *imagePath, Size frameSize, Size destSize);
     void render();
 private:
-    virtual Animation getAnimation() = 0;
-    Size frameSize;
+    virtual Animation getAnimation();
     int frameCount;
+    Size frameSize;
     Size destSize;
     int elapsed = 0;
     int prevFrame = 0;
