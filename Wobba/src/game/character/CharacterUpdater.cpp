@@ -51,7 +51,7 @@ void CharacterUpdater::update(int elapsed)
     if (!this->characterInfo.jumping && isGrounded && this->gameObject->velocity.y >= 0) {
         this->gameObject->velocity.y = 0;
         auto groundObject = groundCollisions.front().colliderB->getGameObject();
-        this->gameObject->globalPosition.y = groundObject->globalPosition.y - groundCollisions.front().colliderB->size.h;
+        this->gameObject->globalPosition.y = groundObject->globalPosition.y - this->characterInfo.size.h;
     }
     else {
         this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, 2.);
