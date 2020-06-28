@@ -25,7 +25,7 @@ void Wobba::init()
         }
 
         if (x >= 200 && random == 0) {
-            fireballFactory.create({ x + 25, 800 });
+            fireballFactory.create({ x + 25, (double)(rand() % 800) });
         }
 
         for (double y = 500; y <= 700; y += 100) {

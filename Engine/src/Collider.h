@@ -22,8 +22,10 @@ struct Collision
 
 class Collider : public Component {
 public:
+    Collider(Size size, Vector offset, bool isTrigger);
     Collider(Size size, Vector offset);
     Collider(Size size);
+    bool isTrigger;
     void setGameObject(GameObject *gameObject);
     Collision checkCollision(Collider *collider);
     Size size;

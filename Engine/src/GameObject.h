@@ -21,8 +21,8 @@ public:
     virtual ~GameObject();
     Game *game;
     void update(int elapsed);
-    Collision checkCollision(GameObject *object);
-    Collision checkCollision(Collider &collider);
+    Collision checkCollision(GameObject *object, bool includeTriggers);
+    Collision checkCollision(Collider &collider, bool includeTriggers);
     virtual void handleCollision(Collision collision);
     void handleInput(std::list<SDL_Keysym> keys);
     void render();

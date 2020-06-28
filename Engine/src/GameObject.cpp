@@ -37,22 +37,26 @@ void GameObject::update(int elapsed)
     }
 }
 
-Collision GameObject::checkCollision(GameObject *object)
+Collision GameObject::checkCollision(GameObject *object, bool includeTriggers)
 {
     for (auto gameCollider : this->colliders)
     {
         if (gameCollider->type == ColliderType::ACTIVE) {
-            return object->checkCollision(*gameCollider->collider);
+            return object->checkCollision(*gameCollider->collider, includeTriggers);
         }
     }
 
     return Collision{ false };
 }
 
-Collision GameObject::checkCollision(Collider &collider)
+Collision GameObject::checkCollision(Collider &collider, bool includeTriggers)
 {
     for (auto gameCollider : this->colliders)
     {
+        if (!includeTriggers && gameCollider->collider->isTrigger) {
+            break;
+        }
+
         auto thisCollider = gameCollider->collider;
         auto collision = collider.checkCollision(thisCollider);
         if (collision.isCollision) {

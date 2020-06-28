@@ -1,7 +1,11 @@
 #include "Collider.h"
 #include "GameObject.h"
 
-Collider::Collider(Size size, Vector offset) : size(size), offset(offset)
+Collider::Collider(Size size, Vector offset, bool isTrigger) : size(size), offset(offset), isTrigger(isTrigger)
+{
+}
+
+Collider::Collider(Size size, Vector offset) : Collider(size, offset, false)
 {
 }
 

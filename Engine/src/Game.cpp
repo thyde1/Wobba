@@ -98,7 +98,7 @@ void Game::applyMovement(int elapsed)
     }
 }
 
-void Game::checkCollisions()
+void Game::checkCollisions(bool includeTriggers)
 {
     for (GameObject *gameObject : this->gameObjectsReceivingCollisions)
     {
@@ -106,7 +106,7 @@ void Game::checkCollisions()
         auto nearbyGameObjects = this->gameObjectsByLocation.get(gameObject->globalPosition);
         for (GameObject *other : nearbyGameObjects) {
             if (other != gameObject) {
-                auto collision = gameObject->checkCollision(other);
+                auto collision = gameObject->checkCollision(other, includeTriggers);
                 if (collision.isCollision) {
                     collisions.push_front(collision);
                 }
@@ -128,22 +128,24 @@ void Game::checkCollisions()
 
         if (collisions.size() > 0) {
             auto collision = collisions.front();
-            if (collision.normal.y != 0) {
-                int x = 0;
-            }
             collision.colliderA->getGameObject()->handleCollision(collision);
-            this->checkCollisions();
+            if (!includeTriggers) {
+                this->checkCollisions();
+            }
+        }
+        else if (!includeTriggers) {
+            this->checkCollisions(true);
         }
     }
 }
 
-std::list<Collision> Game::checkCollisions(Collider collider)
+std::list<Collision> Game::checkCollisions(Collider collider, bool includeTriggers)
 {
     auto nearbyGameObjects = this->gameObjectsByLocation.get(collider.getGameObject()->globalPosition);
     std::list<Collision> collisions;
     for (GameObject *other : nearbyGameObjects) {
         if (other != collider.getGameObject()) {
-            auto collision = other->checkCollision(collider);
+            auto collision = other->checkCollision(collider, includeTriggers);
             if (collision.isCollision) {
                 collisions.push_back(collision);
             }
