@@ -4,7 +4,7 @@
 #include "../GameObject.h"
 
 TextRenderer::TextRenderer(SDL_Color color, TextAlignment alignment, std::vector<const char *> text)
-    : color(color), font(TTF_OpenFont("assets/verdana.ttf", 20)), width(400), alignment(alignment), text(text)
+    : color(color), font(TTF_OpenFont("assets/verdana.ttf", 10)), width(400), alignment(alignment), text(text)
 {
 }
 
@@ -30,7 +30,7 @@ void TextRenderer::render()
 {
     std::vector<SDL_Texture *> textures;
     for (auto line : this->text) {
-        auto textSurface = TTF_RenderText_Blended_Wrapped(this->font, line, this->color, this->width);
+        auto textSurface = TTF_RenderText_Solid(this->font, line, this->color);
         auto textTexture = SDL_CreateTextureFromSurface(this->sdlRenderer, textSurface);
         SDL_FreeSurface(textSurface);
         textures.push_back(textTexture);

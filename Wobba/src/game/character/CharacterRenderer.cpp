@@ -4,7 +4,7 @@ CharacterRenderer::CharacterRenderer(CharacterInfo *characterInfo) :
     AnimatedSpriteRenderer(
         "assets/character.png",
         { 8, 8 },
-        { 80, 80 }),
+        { 8, 8 }),
     characterInfo(characterInfo)
 {
 }

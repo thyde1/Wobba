@@ -33,9 +33,9 @@ public:
     std::set<GameObject *> gameObjectsReceivingCollisions;
     void reset();
     Vector cameraPosition;
-
-private:
+protected:
     SDL_Renderer* renderer;
+private:
     void clearScreen();
     std::list<GameObject*> gameObjectsPendingInstantiation;
     void instantiateGameObjectsPendingInstantiation();
