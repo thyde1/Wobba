@@ -15,15 +15,17 @@ GameObject *CharacterFactory::create()
 {
     auto characterInfo = new CharacterInfo;
     auto groundCollider = new Collider(Size{ characterInfo->size.w, 1 }, { 0, (double)characterInfo->size.h });
+    auto jumpSoundPlayer = new SoundPlayer("assets/Jump.wav");
 
     return this->game.instantiateObject()
         ->setGlobalPosition({ 15, 15 })
         ->addComponent(characterInfo)
         ->addComponent(groundCollider)
+        ->addComponent(jumpSoundPlayer)
         ->addRenderer(new CharacterRenderer(characterInfo))
         ->addCollider(ColliderType::ACTIVE, new Collider(characterInfo->size))
         ->addCollider(ColliderType::PASSIVE, groundCollider)
-        ->addUpdater(new CharacterUpdater(*characterInfo, *groundCollider))
+        ->addUpdater(new CharacterUpdater(*characterInfo, *groundCollider, *jumpSoundPlayer))
         ->addUpdater(new CameraUpdater())
         ->addUpdater(new DeathChecker())
         ->addCollisionHandler(new CharacterCollisionHandler(*characterInfo))

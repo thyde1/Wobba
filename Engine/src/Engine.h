@@ -9,3 +9,5 @@
 #include "CollisionHandler.h"
 #include "InputHandler.h"
 #include "Vector.h"
+#include "MusicPlayer.h"
+#include "SoundPlayer.h"

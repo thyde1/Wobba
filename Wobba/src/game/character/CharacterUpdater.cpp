@@ -2,7 +2,8 @@
 #include <algorithm>
 #include "../terrain/SafeSurface.h"
 
-CharacterUpdater::CharacterUpdater(CharacterInfo &characterInfo, Collider &groundCollider) : characterInfo(characterInfo), groundCollider(groundCollider)
+CharacterUpdater::CharacterUpdater(CharacterInfo &characterInfo, Collider &groundCollider, SoundPlayer &jumpSoundPlayer)
+    : characterInfo(characterInfo), groundCollider(groundCollider), jumpSoundPlayer(jumpSoundPlayer)
 {
 }
 
@@ -37,6 +38,7 @@ void CharacterUpdater::update(int elapsed)
     if (this->characterInfo.jumping && isGrounded) {
         this->gameObject->velocity.y = -jumpStrength;
         this->jumpDuration = 0;
+        this->jumpSoundPlayer.play();
     }
 
     if (this->characterInfo.jumpHeld && this->jumpDuration >= 0 && this->jumpDuration < maxJumpDuration) {
@@ -48,12 +50,13 @@ void CharacterUpdater::update(int elapsed)
         this->jumpDuration = -1;
     }
 
-    if (!this->characterInfo.jumping && isGrounded && this->gameObject->velocity.y >= 0) {
+    if (!this->characterInfo.jumping && isGrounded && this->gameObject->velocity.y > 0) {
         this->gameObject->velocity.y = 0;
         auto groundObject = groundCollisions.front().colliderB->getGameObject();
         this->gameObject->globalPosition.y = groundObject->globalPosition.y - this->characterInfo.size.h;
+        this->jumpSoundPlayer.play();
     }
-    else {
+    else if (!this->characterInfo.jumping && !isGrounded) {
         this->gameObject->velocity.y = std::min(this->gameObject->velocity.y + elapsed * gravity, terminalV);
     }
 

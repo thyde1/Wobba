@@ -151,12 +151,14 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameCollider.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\MusicPlayer.cpp" />
     <ClCompile Include="src\ObjectBucket.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\renderers\AnimatedSpriteRenderer.cpp" />
     <ClCompile Include="src\renderers\SpriteRenderer.cpp" />
     <ClCompile Include="src\renderers\TextRenderer.cpp" />
     <ClCompile Include="src\Size.cpp" />
+    <ClCompile Include="src\SoundPlayer.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,8 +170,10 @@
     <ClInclude Include="src\GameCollider.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\InputHandler.h" />
+    <ClInclude Include="src\MusicPlayer.h" />
     <ClInclude Include="src\ObjectBucket.h" />
     <ClInclude Include="src\renderers\AnimatedSpriteRenderer.h" />
+    <ClInclude Include="src\SoundPlayer.h" />
     <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\renderers\SpriteRenderer.h" />

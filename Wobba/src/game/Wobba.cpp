@@ -13,7 +13,9 @@ Wobba::Wobba() : Game("Wobba", { 1400, 900 })
 void Wobba::init()
 {
     SDL_RenderSetScale(this->renderer, 10, 10);
-    this->instantiateObject()->addRenderer(new BackgroundRenderer());
+    this->instantiateObject()
+        ->addRenderer(new BackgroundRenderer())
+        ->addComponent(new MusicPlayer("assets/CreepOut.xm"));
 
     auto terrainFactory = TerrainFactory(*this);
     auto lavaFactory = LavaFactory(*this);

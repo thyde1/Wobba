@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="assets\CreepOut.xm" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\terrain\TerrainFactory.h">
@@ -145,5 +146,13 @@
     <Image Include="assets\lava.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\verdana.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\Jump.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
