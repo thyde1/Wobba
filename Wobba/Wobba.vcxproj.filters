@@ -139,5 +139,11 @@
     <Image Include="assets\terrain2.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\fireball.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\lava.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

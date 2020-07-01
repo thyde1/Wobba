@@ -73,9 +73,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <CopyLocalDeploymentContent>true</CopyLocalDeploymentContent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <CopyLocalDeploymentContent>true</CopyLocalDeploymentContent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -195,9 +197,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\character.png" />
+    <Image Include="assets\character.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="assets\character2.png" />
-    <Image Include="assets\terrain.png" />
+    <Image Include="assets\fireball.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="assets\lava.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="assets\terrain.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="assets\terrain2.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
