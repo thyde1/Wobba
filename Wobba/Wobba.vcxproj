@@ -158,14 +158,16 @@
     <ClCompile Include="src\game\character\CharacterInputHandler.cpp" />
     <ClCompile Include="src\game\character\CharacterRenderer.cpp" />
     <ClCompile Include="src\game\character\CharacterUpdater.cpp" />
-    <ClCompile Include="src\game\character\DeadInputHandler.cpp" />
-    <ClCompile Include="src\game\character\DeadRenderer.cpp" />
+    <ClCompile Include="src\game\ui\DeadInputHandler.cpp" />
+    <ClCompile Include="src\game\ui\DeadRenderer.cpp" />
     <ClCompile Include="src\game\character\DeathChecker.cpp" />
     <ClCompile Include="src\game\terrain\BackgroundRenderer.cpp" />
     <ClCompile Include="src\game\terrain\FireballFactory.cpp" />
     <ClCompile Include="src\game\terrain\FireballUpdater.cpp" />
     <ClCompile Include="src\game\terrain\LavaFactory.cpp" />
     <ClCompile Include="src\game\terrain\TerrainFactory.cpp" />
+    <ClCompile Include="src\game\ui\DeathScreenFactory.cpp" />
+    <ClCompile Include="src\game\ui\DeathUpdater.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\game\Wobba.cpp" />
   </ItemGroup>
@@ -177,8 +179,8 @@
     <ClInclude Include="src\game\character\CharacterInputHandler.h" />
     <ClInclude Include="src\game\character\CharacterRenderer.h" />
     <ClInclude Include="src\game\character\CharacterUpdater.h" />
-    <ClInclude Include="src\game\character\DeadInputHandler.h" />
-    <ClInclude Include="src\game\character\DeadRenderer.h" />
+    <ClInclude Include="src\game\ui\DeadInputHandler.h" />
+    <ClInclude Include="src\game\ui\DeadRenderer.h" />
     <ClInclude Include="src\game\character\DeathChecker.h" />
     <ClInclude Include="src\game\Direction.h" />
     <ClInclude Include="src\game\terrain\BackgroundRenderer.h" />
@@ -188,6 +190,8 @@
     <ClInclude Include="src\game\terrain\LavaFactory.h" />
     <ClInclude Include="src\game\terrain\SafeSurface.h" />
     <ClInclude Include="src\game\terrain\TerrainFactory.h" />
+    <ClInclude Include="src\game\ui\DeathScreenFactory.h" />
+    <ClInclude Include="src\game\ui\DeathUpdater.h" />
     <ClInclude Include="src\game\Wobba.h" />
   </ItemGroup>
   <ItemGroup>
