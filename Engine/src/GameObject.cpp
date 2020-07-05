@@ -79,6 +79,7 @@ void GameObject::render()
 {
     for (Renderer *renderer : this->renderers)
     {
+
         renderer->render();
     }
 }
@@ -128,7 +129,12 @@ GameObject *GameObject::addCollider(ColliderType type, Collider *collider) {
 
 GameObject *GameObject::setGlobalPosition(Vector position)
 {
+    auto oldPosition = this->globalPosition;
     this->globalPosition = position;
+    //if (this->game != nullptr && oldPosition.x != position.x) {
+    if (this->game != nullptr) {
+        this->game->updatePosition(this);
+    }
     return this;
 }
 

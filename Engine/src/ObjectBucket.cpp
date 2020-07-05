@@ -7,15 +7,17 @@ ObjectBucket::ObjectBucket(int bucketSize) : bucketSize(bucketSize)
 
 void ObjectBucket::insert(GameObject *gameObject)
 {
-    auto bucketKey = (int)(gameObject->getGlobalPosition().x / this->bucketSize);
+    auto position = gameObject->getGlobalPosition();
+    auto bucketKey = this->getBucketKey(position);
     auto bucket = this->gameObjectsByLocation[bucketKey];
     bucket.push_back(gameObject);
     this->gameObjectsByLocation[bucketKey] = bucket;
+    this->gameObjectBuckets[gameObject] = bucketKey;
 }
 
 std::list<GameObject *> ObjectBucket::get(Vector &location)
 {
-    auto bucketKey = (int)(location.x / bucketSize);
+    auto bucketKey = this->getBucketKey(location);
     std::list<GameObject *> result;
     for (int offset = -1; offset <= 1; offset++) {
         std::list<GameObject*> bucket(this->gameObjectsByLocation[bucketKey + offset]);
@@ -27,18 +29,24 @@ std::list<GameObject *> ObjectBucket::get(Vector &location)
 
 void ObjectBucket::remove(GameObject *gameObject)
 {
-    auto bucketKey = (int)(gameObject->getGlobalPosition().x / bucketSize);
+    auto bucketKey = this->gameObjectBuckets[gameObject];
     auto bucket = this->gameObjectsByLocation[bucketKey];
-    for (auto object : bucket) {
-        if (object == gameObject) {
-            bucket.remove(object);
-            this->gameObjectsByLocation[bucketKey] = bucket;
-            return;
-        }
-    }
+    bucket.remove(gameObject);
+    this->gameObjectsByLocation[bucketKey] = bucket;
+    this->gameObjectBuckets.erase(gameObject);
+}
 
-    for (auto bucket : this->gameObjectsByLocation) {
-        bucket.second.remove(gameObject);
-        this->gameObjectsByLocation[bucket.first] = bucket.second;
+void ObjectBucket::updateLocation(GameObject *gameObject)
+{
+    auto position = gameObject->getGlobalPosition();
+    auto bucketKey = this->getBucketKey(position);
+    if (this->gameObjectBuckets[gameObject] != bucketKey) {
+        this->remove(gameObject);
+        this->insert(gameObject);
     }
+}
+
+int ObjectBucket::getBucketKey(Vector &position)
+{
+    return (int)(position.x / bucketSize);
 }

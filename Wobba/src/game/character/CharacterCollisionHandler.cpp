@@ -48,5 +48,5 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
         }
     }
 
-    collider->getGameObject()->setGlobalPosition(position);
+    this->gameObject->setGlobalPosition(position);
 }

@@ -12,7 +12,7 @@
 
 class Game {
 public:
-    Game(const char *title, Size windowSize);
+    Game(const char *title, Size windowSize, int collisionBucketSize);
     ~Game();
     TextureManager textureManager;
     Size windowSize;
@@ -33,6 +33,7 @@ public:
     std::set<GameObject *> gameObjectsReceivingCollisions;
     void reset();
     Vector cameraPosition;
+    void updatePosition(GameObject *gameObject);
 protected:
     SDL_Renderer* renderer;
 private:
@@ -41,6 +42,8 @@ private:
     void instantiateGameObjectsPendingInstantiation();
     std::list<GameObject*> gameObjectsPendingDestruction;
     void destroyObjectsPendingDestruction();
+    std::list<GameObject *> gameObjectsPendingPositionUpdating;
+    void updatePositionsPendingUpdating();
     const char *title;
     bool isRunning;
     std::list<SDL_Keysym> keys;

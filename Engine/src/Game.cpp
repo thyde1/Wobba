@@ -6,7 +6,8 @@
 #include "TextureManager.h"
 #include "Collider.h"
 
-Game::Game(const char *title, Size windowSize) : windowSize(windowSize), title(title), isRunning(true), cameraPosition({ 0, 0 }), gameObjectsByLocation(ObjectBucket(100))
+Game::Game(const char *title, Size windowSize, int collisionBucketSize)
+    : windowSize(windowSize), title(title), isRunning(true), cameraPosition({ 0, 0 }), gameObjectsByLocation(ObjectBucket(collisionBucketSize))
 {
     this->sdlInit();
     this->textureManager = TextureManager(this->renderer);
@@ -48,8 +49,10 @@ void Game::start()
         if (elapsed >= 2) {
             this->handleInput();
             this->update(elapsed);
+            this->updatePositionsPendingUpdating();
             destroyObjectsPendingDestruction();
             this->applyMovement(elapsed);
+            this->updatePositionsPendingUpdating();
             this->checkCollisions();
             destroyObjectsPendingDestruction();
             lastUpdate = SDL_GetTicks();
@@ -192,6 +195,11 @@ void Game::reset()
     this->init();
 }
 
+void Game::updatePosition(GameObject *gameObject)
+{
+    this->gameObjectsPendingPositionUpdating.push_front(gameObject);
+}
+
 void Game::clearScreen()
 {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -223,4 +231,13 @@ void Game::destroyObjectsPendingDestruction()
     }
 
     this->gameObjectsPendingDestruction.clear();
+}
+
+void Game::updatePositionsPendingUpdating()
+{
+    for (auto gameObject : this->gameObjectsPendingPositionUpdating) {
+        this->gameObjectsByLocation.updateLocation(gameObject);
+    }
+
+    this->gameObjectsPendingPositionUpdating.clear();
 }
