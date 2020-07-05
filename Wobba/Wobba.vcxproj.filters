@@ -45,12 +45,6 @@
     <ClCompile Include="src\game\terrain\LavaFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\terrain\FireballFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game\terrain\FireballUpdater.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\terrain\BackgroundRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,6 +61,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\game\ui\DeathUpdater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\hazards\FireballFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\hazards\FireballUpdater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -105,19 +105,10 @@
     <ClInclude Include="src\game\character\DeathChecker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\terrain\Damager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\terrain\SafeSurface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\terrain\LavaFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\terrain\FireballFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game\terrain\FireballUpdater.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\terrain\BackgroundRenderer.h">
@@ -136,6 +127,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\ui\DeathUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\hazards\FireballFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\hazards\FireballUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\Damager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

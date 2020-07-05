@@ -162,8 +162,8 @@
     <ClCompile Include="src\game\ui\DeadRenderer.cpp" />
     <ClCompile Include="src\game\character\DeathChecker.cpp" />
     <ClCompile Include="src\game\terrain\BackgroundRenderer.cpp" />
-    <ClCompile Include="src\game\terrain\FireballFactory.cpp" />
-    <ClCompile Include="src\game\terrain\FireballUpdater.cpp" />
+    <ClCompile Include="src\game\hazards\FireballFactory.cpp" />
+    <ClCompile Include="src\game\hazards\FireballUpdater.cpp" />
     <ClCompile Include="src\game\terrain\LavaFactory.cpp" />
     <ClCompile Include="src\game\terrain\TerrainFactory.cpp" />
     <ClCompile Include="src\game\ui\DeathScreenFactory.cpp" />
@@ -184,9 +184,9 @@
     <ClInclude Include="src\game\character\DeathChecker.h" />
     <ClInclude Include="src\game\Direction.h" />
     <ClInclude Include="src\game\terrain\BackgroundRenderer.h" />
-    <ClInclude Include="src\game\terrain\Damager.h" />
-    <ClInclude Include="src\game\terrain\FireballFactory.h" />
-    <ClInclude Include="src\game\terrain\FireballUpdater.h" />
+    <ClInclude Include="src\game\components\Damager.h" />
+    <ClInclude Include="src\game\hazards\FireballFactory.h" />
+    <ClInclude Include="src\game\hazards\FireballUpdater.h" />
     <ClInclude Include="src\game\terrain\LavaFactory.h" />
     <ClInclude Include="src\game\terrain\SafeSurface.h" />
     <ClInclude Include="src\game\terrain\TerrainFactory.h" />

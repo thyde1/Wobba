@@ -1,5 +1,5 @@
 #include "FireballFactory.h"
-#include "Damager.h"
+#include "../components/Damager.h"
 #include "FireballUpdater.h"
 
 FireballFactory::FireballFactory(Game &game) : game(game)

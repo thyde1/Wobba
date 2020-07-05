@@ -1,6 +1,6 @@
 #include "CharacterCollisionHandler.h"
 #include <iostream>
-#include "../terrain/Damager.h"
+#include "../components/Damager.h"
 
 CharacterCollisionHandler::CharacterCollisionHandler(CharacterInfo &characterInfo) : characterInfo(characterInfo)
 {

@@ -3,10 +3,10 @@
 #include "terrain/BackgroundRenderer.h"
 #include "terrain/TerrainFactory.h"
 #include "terrain/LavaFactory.h"
-#include "terrain/FireballFactory.h"
+#include "hazards/FireballFactory.h"
 #include "character/CharacterFactory.h"
 
-Wobba::Wobba() : Game("Wobba", { 1400, 900 })
+Wobba::Wobba() : Game("Wobba", { 1400, 900 }, 10)
 {
 }
 

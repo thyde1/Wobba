@@ -131,8 +131,7 @@ GameObject *GameObject::setGlobalPosition(Vector position)
 {
     auto oldPosition = this->globalPosition;
     this->globalPosition = position;
-    //if (this->game != nullptr && oldPosition.x != position.x) {
-    if (this->game != nullptr) {
+    if (this->game != nullptr && oldPosition.x != position.x) {
         this->game->updatePosition(this);
     }
     return this;
