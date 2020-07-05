@@ -158,6 +158,10 @@
     <ClCompile Include="src\game\character\CharacterInputHandler.cpp" />
     <ClCompile Include="src\game\character\CharacterRenderer.cpp" />
     <ClCompile Include="src\game\character\CharacterUpdater.cpp" />
+    <ClCompile Include="src\game\enemies\CreepyFactory.cpp" />
+    <ClCompile Include="src\game\enemies\CreepyInfo.cpp" />
+    <ClCompile Include="src\game\enemies\CreepyRenderer.cpp" />
+    <ClCompile Include="src\game\enemies\CreepyUpdater.cpp" />
     <ClCompile Include="src\game\ui\DeadInputHandler.cpp" />
     <ClCompile Include="src\game\ui\DeadRenderer.cpp" />
     <ClCompile Include="src\game\character\DeathChecker.cpp" />
@@ -179,6 +183,10 @@
     <ClInclude Include="src\game\character\CharacterInputHandler.h" />
     <ClInclude Include="src\game\character\CharacterRenderer.h" />
     <ClInclude Include="src\game\character\CharacterUpdater.h" />
+    <ClInclude Include="src\game\enemies\CreepyFactory.h" />
+    <ClInclude Include="src\game\enemies\CreepyInfo.h" />
+    <ClInclude Include="src\game\enemies\CreepyRenderer.h" />
+    <ClInclude Include="src\game\enemies\CreepyUpdater.h" />
     <ClInclude Include="src\game\ui\DeadInputHandler.h" />
     <ClInclude Include="src\game\ui\DeadRenderer.h" />
     <ClInclude Include="src\game\character\DeathChecker.h" />
@@ -210,6 +218,9 @@
       <DeploymentContent>true</DeploymentContent>
     </Image>
     <Image Include="assets\character2.png" />
+    <Image Include="assets\creepy.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="assets\fireball.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
@@ -225,6 +236,9 @@
     <Font Include="assets\verdana.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="assets\Death.wav">
+      <DeploymentContent>true</DeploymentContent>
+    </Media>
     <Media Include="assets\Jump.wav">
       <DeploymentContent>true</DeploymentContent>
     </Media>

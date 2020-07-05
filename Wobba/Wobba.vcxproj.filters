@@ -69,6 +69,18 @@
     <ClCompile Include="src\game\hazards\FireballUpdater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\enemies\CreepyUpdater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\enemies\CreepyRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\enemies\CreepyFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\enemies\CreepyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -138,6 +150,18 @@
     <ClInclude Include="src\game\components\Damager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\enemies\CreepyUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\enemies\CreepyInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\enemies\CreepyRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\enemies\CreepyFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\character.png">
@@ -158,12 +182,18 @@
     <Image Include="assets\lava.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\creepy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\verdana.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="assets\Jump.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="assets\Death.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>
