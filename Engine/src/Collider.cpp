@@ -20,9 +20,9 @@ void Collider::setGameObject(GameObject *gameObject)
 
 Collision Collider::checkCollision(Collider *collider)
 {
-    Vector thisPosition = this->gameObject->globalPosition + this->offset;
+    Vector thisPosition = this->gameObject->getGlobalPosition() + this->offset;
     Vector thisVelocity = this->gameObject->velocity;
-    Vector otherPosition = collider->gameObject->globalPosition + collider->offset;
+    Vector otherPosition = collider->gameObject->getGlobalPosition() + collider->offset;
     Vector otherVelocity = collider->gameObject->velocity;
     auto collisionDetails = Collider::checkCollision(
         this->size, thisPosition, thisVelocity, collider->size, otherPosition);

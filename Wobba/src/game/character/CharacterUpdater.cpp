@@ -50,10 +50,13 @@ void CharacterUpdater::update(int elapsed)
         this->jumpDuration = -1;
     }
 
+    auto position = this->gameObject->getGlobalPosition();
+
     if (!this->characterInfo.jumping && isGrounded && this->gameObject->velocity.y > 0) {
         this->gameObject->velocity.y = 0;
         auto groundObject = groundCollisions.front().colliderB->getGameObject();
-        this->gameObject->globalPosition.y = groundObject->globalPosition.y - this->characterInfo.size.h;
+        position.y = groundObject->getGlobalPosition().y - this->characterInfo.size.h;
+        this->gameObject->setGlobalPosition(position);
         this->jumpSoundPlayer.play();
     }
     else if (!this->characterInfo.jumping && !isGrounded) {

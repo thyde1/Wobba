@@ -24,6 +24,6 @@ void SpriteRenderer::render(const double rotation)
     }
 
     auto cameraPosition = this->gameObject->game->cameraPosition;
-    this->textureRect = { (int)(this->gameObject->globalPosition.x - cameraPosition.x), (int)(this->gameObject->globalPosition.y - cameraPosition.y), this->w, this->h };
+    this->textureRect = { (int)(this->gameObject->getGlobalPosition().x - cameraPosition.x), (int)(this->gameObject->getGlobalPosition().y - cameraPosition.y), this->w, this->h };
     SDL_RenderCopyEx(this->sdlRenderer, texture, NULL, &this->textureRect, rotation, &this->center, SDL_RendererFlip::SDL_FLIP_NONE);
 }

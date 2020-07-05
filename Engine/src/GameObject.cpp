@@ -131,3 +131,8 @@ GameObject *GameObject::setGlobalPosition(Vector position)
     this->globalPosition = position;
     return this;
 }
+
+Vector GameObject::getGlobalPosition()
+{
+    return this->globalPosition;
+}

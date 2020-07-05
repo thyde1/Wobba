@@ -98,7 +98,7 @@ void Game::applyMovement(int elapsed)
 {
     for (GameObject *gameObject : this->gameObjectsWithUpdaters) {
         auto deltaV = gameObject->velocity * elapsed;
-        gameObject->globalPosition += deltaV;
+        gameObject->setGlobalPosition(gameObject->getGlobalPosition() + deltaV);
     }
 }
 
@@ -107,7 +107,8 @@ void Game::checkCollisions(bool includeTriggers)
     for (GameObject *gameObject : this->gameObjectsReceivingCollisions)
     {
         std::list<Collision> collisions;
-        auto nearbyGameObjects = this->gameObjectsByLocation.get(gameObject->globalPosition);
+        auto thisPosition = gameObject->getGlobalPosition();
+        auto nearbyGameObjects = this->gameObjectsByLocation.get(thisPosition);
         for (GameObject *other : nearbyGameObjects) {
             if (other != gameObject) {
                 auto collision = gameObject->checkCollision(other, includeTriggers);
@@ -118,8 +119,8 @@ void Game::checkCollisions(bool includeTriggers)
         }
 
         collisions.sort([&](Collision &a, Collision &b) {
-            auto collisionADistanceSquared = (a.colliderA->getGameObject()->globalPosition - a.colliderB->getGameObject()->globalPosition).magnitudeSquared();
-            auto collisionBDistanceSquared = (b.colliderA->getGameObject()->globalPosition - b.colliderB->getGameObject()->globalPosition).magnitudeSquared();
+            auto collisionADistanceSquared = (a.colliderA->getGameObject()->getGlobalPosition() - a.colliderB->getGameObject()->getGlobalPosition()).magnitudeSquared();
+            auto collisionBDistanceSquared = (b.colliderA->getGameObject()->getGlobalPosition() - b.colliderB->getGameObject()->getGlobalPosition()).magnitudeSquared();
             if (a.normal.x != 0 && b.normal.x == 0) {
                 return true;
             }
@@ -145,7 +146,8 @@ void Game::checkCollisions(bool includeTriggers)
 
 std::list<Collision> Game::checkCollisions(Collider collider, bool includeTriggers)
 {
-    auto nearbyGameObjects = this->gameObjectsByLocation.get(collider.getGameObject()->globalPosition);
+    auto position = collider.getGameObject()->getGlobalPosition();
+    auto nearbyGameObjects = this->gameObjectsByLocation.get(position);
     std::list<Collision> collisions;
     for (GameObject *other : nearbyGameObjects) {
         if (other != collider.getGameObject()) {

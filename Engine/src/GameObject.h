@@ -41,6 +41,7 @@ public:
         return this;
     }
     GameObject* setGlobalPosition(Vector position);
+    Vector getGlobalPosition();
     template <class T>
     bool hasComponent()
     {
@@ -57,10 +58,10 @@ public:
 
         return NULL;
     }
-    Vector globalPosition;
     Vector velocity;
 private:
     SDL_Renderer *sdlRenderer;
+    Vector globalPosition;
     std::list<Updater *> updaters;
     std::list<Renderer *> renderers;
     std::list<InputHandler *> inputHandlers;

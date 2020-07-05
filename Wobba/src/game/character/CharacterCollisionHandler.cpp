@@ -27,22 +27,26 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
         characterInfo->alive = false;
     }
 
+    auto position = this->gameObject->getGlobalPosition();
+
     if (normal.y != 0) {
         if (normal.y < 0) {
-            this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y - thisCollider->size.h;
+            position.y = collider->getGameObject()->getGlobalPosition().y - thisCollider->size.h;
         }
         else {
-            this->gameObject->globalPosition.y = collider->getGameObject()->globalPosition.y + collider->size.h;
+            position.y = collider->getGameObject()->getGlobalPosition().y + collider->size.h;
         }
     }
 
     if (normal.x != 0) {
         if (normal.x < 0) {
-            this->gameObject->globalPosition.x = collider->getGameObject()->globalPosition.x - this->characterInfo.size.w;
+            position.x = collider->getGameObject()->getGlobalPosition().x - this->characterInfo.size.w;
         }
         else
         {
-            this->gameObject->globalPosition.x = collider->getGameObject()->globalPosition.x + collider->size.w;
+            position.x = collider->getGameObject()->getGlobalPosition().x + collider->size.w;
         }
     }
+
+    collider->getGameObject()->setGlobalPosition(position);
 }

@@ -4,7 +4,7 @@
 
 void DeathChecker::update(int elapsed)
 {
-    if (this->gameObject->globalPosition.y > 100 || !this->gameObject->getComponent<CharacterInfo>()->alive) {
+    if (this->gameObject->getGlobalPosition().y > 100 || !this->gameObject->getComponent<CharacterInfo>()->alive) {
         DeathScreenFactory deathScreenFactory(*this->gameObject->game);
         deathScreenFactory.create();
 

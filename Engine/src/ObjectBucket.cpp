@@ -7,7 +7,7 @@ ObjectBucket::ObjectBucket(int bucketSize) : bucketSize(bucketSize)
 
 void ObjectBucket::insert(GameObject *gameObject)
 {
-    auto bucketKey = (int)(gameObject->globalPosition.x / this->bucketSize);
+    auto bucketKey = (int)(gameObject->getGlobalPosition().x / this->bucketSize);
     auto bucket = this->gameObjectsByLocation[bucketKey];
     bucket.push_back(gameObject);
     this->gameObjectsByLocation[bucketKey] = bucket;
@@ -27,7 +27,7 @@ std::list<GameObject *> ObjectBucket::get(Vector &location)
 
 void ObjectBucket::remove(GameObject *gameObject)
 {
-    auto bucketKey = (int)(gameObject->globalPosition.x / bucketSize);
+    auto bucketKey = (int)(gameObject->getGlobalPosition().x / bucketSize);
     auto bucket = this->gameObjectsByLocation[bucketKey];
     for (auto object : bucket) {
         if (object == gameObject) {
