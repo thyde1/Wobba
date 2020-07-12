@@ -214,6 +214,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\blueCreepy.png" />
     <Image Include="assets\character.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
