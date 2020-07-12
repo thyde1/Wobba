@@ -4,7 +4,7 @@
 
 template <class T>
 struct GVector {
-    double x, y;
+    T x, y;
 
     GVector<T> operator+(const GVector<T> &rhs)
     {

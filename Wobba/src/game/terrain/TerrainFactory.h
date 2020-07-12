@@ -1,7 +1,7 @@
 #pragma once
-#include <Engine.h>
+#include "../levelLoader/GameObjectFactory.h"
 
-class TerrainFactory {
+class TerrainFactory : public GameObjectFactory {
 public:
     TerrainFactory(Game &game);
     GameObject* create(Vector position);

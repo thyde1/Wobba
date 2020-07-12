@@ -6,6 +6,7 @@
 #include "hazards/FireballFactory.h"
 #include "enemies/CreepyFactory.h"
 #include "character/CharacterFactory.h"
+#include "../game/levelLoader/LevelLoader.h"
 
 Wobba::Wobba() : Game("Wobba", { 1400, 900 }, 10)
 {
@@ -17,6 +18,9 @@ void Wobba::init()
     this->instantiateObject()
         ->addRenderer(new BackgroundRenderer())
         ->addComponent(new MusicPlayer("assets/CreepOut.xm"));
+
+    LevelLoader levelLoader(*this);
+    levelLoader.load("resources/maps/LavaCaveLevel.tmx");
 
     auto terrainFactory = TerrainFactory(*this);
     auto lavaFactory = LavaFactory(*this);

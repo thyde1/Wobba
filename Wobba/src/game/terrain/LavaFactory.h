@@ -1,7 +1,7 @@
 #pragma once
-#include <Engine.h>
+#include "../levelLoader/GameObjectFactory.h"
 
-class LavaFactory {
+class LavaFactory : public GameObjectFactory {
 public:
     LavaFactory(Game &game);
     GameObject *create(Vector position);
