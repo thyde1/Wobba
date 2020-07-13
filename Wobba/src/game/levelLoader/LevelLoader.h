@@ -16,5 +16,5 @@ private:
     LavaFactory lavaFactory;
     FireballFactory fireballFactory;
     CreepyFactory creepyFactory;
-    std::map<Uint32, GameObjectFactory> getObjectIndexFactories(rapidxml::xml_document<> *document);
+    std::map<Uint32, GameObjectFactory*> getObjectIndexFactories(rapidxml::xml_document<> *document);
 };

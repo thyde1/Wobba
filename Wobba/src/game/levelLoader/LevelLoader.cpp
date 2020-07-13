@@ -64,7 +64,7 @@ void LevelLoader::load(const char *file)
     rapidxml::xml_document<> *document = new rapidxml::xml_document<>();
     std::string contentsString;
     loadDocument(file, document, contentsString);
-    auto tileSizes = getTileSizes(document);
+    auto tileSize = getTileSizes(document);
     auto mapSize = getMapSize(document);
     auto objectIndexFactories = this->getObjectIndexFactories(document);
 
@@ -72,25 +72,35 @@ void LevelLoader::load(const char *file)
 
     auto decoded = decodeBase64(data);
 
-    Uint32 row = 0;
-    Uint32 column = 0;
-    for (auto tileGid : decoded) {
+    Uint32 tileNumber = 0;
+    for (int row = 0; row < mapSize.y; row++) {
+        for (int column = 0; column < mapSize.x; column++) {
+            if (tileNumber >= decoded.size()) {
+                break;
+            }
+            auto tileGid = decoded[tileNumber];
+            if (tileGid != 0) {
+                objectIndexFactories[tileGid]->create({ (double)column * tileSize.x, (double)row * tileSize.y });
+            }
 
+            tileNumber++;
+        }
     }
 
     delete document;
 }
 
-std::map<Uint32, GameObjectFactory> LevelLoader::getObjectIndexFactories(rapidxml::xml_document<> *document)
+std::map<Uint32, GameObjectFactory*> LevelLoader::getObjectIndexFactories(rapidxml::xml_document<> *document)
 {
     const char *terrainNodeName = "terrain";
     auto tileset = document->first_node("map")->first_node("tileset");
     int firstGid = std::stoi(document->first_node("map")->first_node("tileset")->first_attribute("firstgid")->value());
-    std::map<std::string, GameObjectFactory> objectFactories = {
-        { "Terrain", this->terrainFactory },
-        { "Lava", this->lavaFactory }
+    std::map<std::string, GameObjectFactory*> objectFactories = {
+        { "Terrain", &this->terrainFactory },
+        { "Lava", &this->lavaFactory }
     };
-    std::map<Uint32, GameObjectFactory> objectIndexFactories;
+
+    std::map<Uint32, GameObjectFactory*> objectIndexFactories;
 
     auto terrainTypes = tileset->first_node("terraintypes");
     auto terrainType = terrainTypes->first_node("terrain");

@@ -1,5 +1,6 @@
 #include "TerrainFactory.h"
 #include "SafeSurface.h"
+#include <iostream>
 
 TerrainFactory::TerrainFactory(Game &game) : game(game)
 {

@@ -4,7 +4,7 @@
 class TerrainFactory : public GameObjectFactory {
 public:
     TerrainFactory(Game &game);
-    GameObject* create(Vector position);
+    GameObject* create(Vector position) override;
 private:
     Game &game;
 };

@@ -22,7 +22,7 @@ void Wobba::init()
     LevelLoader levelLoader(*this);
     levelLoader.load("resources/maps/LavaCaveLevel.tmx");
 
-    auto terrainFactory = TerrainFactory(*this);
+    /*auto terrainFactory = TerrainFactory(*this);
     auto lavaFactory = LavaFactory(*this);
     auto fireballFactory = FireballFactory(*this);
     auto creepyFactory = CreepyFactory(*this);
@@ -66,8 +66,8 @@ void Wobba::init()
                 blockPlaced = true;
             }
         }
-    }
+    }*/
 
     auto characterFactory = CharacterFactory(*this);
-    characterFactory.create()->setGlobalPosition({ 5, 40 });
+    characterFactory.create()->setGlobalPosition({ 20, 40 });
 }
