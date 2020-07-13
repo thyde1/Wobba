@@ -1,6 +1,5 @@
 #pragma once
 #include <map>
-#include <string>
 #include <rapidxml/rapidxml.hpp>
 #include "../terrain/TerrainFactory.h"
 #include "../terrain/LavaFactory.h"
@@ -17,5 +16,5 @@ private:
     LavaFactory lavaFactory;
     FireballFactory fireballFactory;
     CreepyFactory creepyFactory;
-    std::map<std::string, GameObjectFactory> getObjectIndexFactories(rapidxml::xml_document<> *document);
+    std::map<Uint32, GameObjectFactory> getObjectIndexFactories(rapidxml::xml_document<> *document);
 };
