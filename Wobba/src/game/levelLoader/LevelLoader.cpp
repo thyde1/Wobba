@@ -40,16 +40,18 @@ namespace {
 
     std::vector<Uint32> decodeBase64(std::string input)
     {
-        typedef boost::archive::iterators::transform_width<boost::archive::iterators::binary_from_base64<boost::archive::iterators::remove_whitespace
-            <std::string::const_iterator>>, 8, 6> ItBinaryT;
+        typedef boost::archive::iterators::transform_width<
+                boost::archive::iterators::binary_from_base64<
+                    boost::archive::iterators::remove_whitespace<
+                        std::string::const_iterator
+                    >
+                >, 8, 6
+        > ItBinaryT;
 
-        size_t num_pad_chars((4 - input.size() % 4) % 4);
+        Uint32 num_pad_chars((4 - input.size() % 4) % 4);
         input.append(num_pad_chars, '=');
-
-        size_t pad_chars(std::count(input.begin(), input.end(), '='));
         std::replace(input.begin(), input.end(), '=', 'A');
         std::string output(ItBinaryT(input.begin()), ItBinaryT(input.end()));
-        output.erase(output.end() - pad_chars, output.end());
 
         Uint32 *out = (Uint32 *)malloc(output.size());
         memcpy(out, output.c_str(), output.size());
