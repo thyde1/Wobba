@@ -6,8 +6,13 @@
 #include <boost/archive/iterators/transform_width.hpp>
 #include <boost/archive/iterators/remove_whitespace.hpp>
 
-LevelLoader::LevelLoader(Game &game)
-    : game(game), terrainFactory(TerrainFactory(game)), lavaFactory(LavaFactory(game)), fireballFactory(FireballFactory(fireballFactory)), creepyFactory(CreepyFactory(game))
+LevelLoader::LevelLoader(Game &game) :
+    game(game),
+    terrainFactory(TerrainFactory(game)),
+    lavaFactory(LavaFactory(game)),
+    fireballFactory(FireballFactory(game)),
+    creepyFactory(CreepyFactory(game, CreepyColor::green)),
+    blueCreepyFactory(CreepyFactory(game, CreepyColor::blue))
 {
 }
 
@@ -99,7 +104,10 @@ std::map<Uint32, GameObjectFactory*> LevelLoader::getObjectIndexFactories(rapidx
     int firstGid = std::stoi(document->first_node("map")->first_node("tileset")->first_attribute("firstgid")->value());
     std::map<std::string, GameObjectFactory*> objectFactories = {
         { "Terrain", &this->terrainFactory },
-        { "Lava", &this->lavaFactory }
+        { "Lava", &this->lavaFactory },
+        { "Creepy", &this->creepyFactory },
+        { "BlueCreepy", &this->blueCreepyFactory },
+        { "Fireball", &this->fireballFactory },
     };
 
     std::map<Uint32, GameObjectFactory*> objectIndexFactories;
