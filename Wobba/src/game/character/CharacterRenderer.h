@@ -15,5 +15,7 @@ private:
         walkingLeft = { 1, 8, true }, 
         jumpingUp = { 9, 2, false },
         jumpingRight = { 11, 2, false },
-        jumpingLeft = { 11, 2, true };
+        jumpingLeft = { 11, 2, true },
+        attackingRight = { 13, 3, false },
+        attackingLeft = { 13, 3, true };
 };

@@ -158,6 +158,7 @@
     <ClCompile Include="src\game\character\CharacterInputHandler.cpp" />
     <ClCompile Include="src\game\character\CharacterRenderer.cpp" />
     <ClCompile Include="src\game\character\CharacterUpdater.cpp" />
+    <ClCompile Include="src\game\character\SwordRenderer.cpp" />
     <ClCompile Include="src\game\enemies\CreepyFactory.cpp" />
     <ClCompile Include="src\game\enemies\CreepyInfo.cpp" />
     <ClCompile Include="src\game\enemies\CreepyRenderer.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="src\game\character\CharacterInputHandler.h" />
     <ClInclude Include="src\game\character\CharacterRenderer.h" />
     <ClInclude Include="src\game\character\CharacterUpdater.h" />
+    <ClInclude Include="src\game\character\SwordRenderer.h" />
     <ClInclude Include="src\game\enemies\CreepyFactory.h" />
     <ClInclude Include="src\game\enemies\CreepyInfo.h" />
     <ClInclude Include="src\game\enemies\CreepyRenderer.h" />

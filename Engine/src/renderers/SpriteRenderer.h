@@ -1,15 +1,17 @@
 #pragma once
 
 #include "../Renderer.h"
+#include "../Vector.h"
 
 class SpriteRenderer : public Renderer
 {
 public:
     SpriteRenderer(const char *imagePath);
-    ~SpriteRenderer();
-    void render();
+    virtual ~SpriteRenderer();
+    void virtual render();
     void render(const double rotation);
 private:
+    virtual GVector<int> getOffset();
     const char *imagePath;
     SDL_Texture *texture;
     int w, h;

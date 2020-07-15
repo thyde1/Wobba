@@ -16,6 +16,7 @@ public:
     void render();
 private:
     virtual Animation getAnimation();
+    Animation prevFrameAnimation;
     int frameCount;
     Size frameSize;
     Size destSize;

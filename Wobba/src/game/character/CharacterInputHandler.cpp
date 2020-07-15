@@ -9,9 +9,19 @@ void CharacterInputHandler::handleInput(std::list<SDL_Keysym> keys)
     this->characterInfo.direction = Direction::NONE;
     this->characterInfo.jumping = false;
     bool jumpKeyDown = false;
+    bool attackKeyDown = false;
     for (auto key : keys) {
         if (key.sym == SDLK_SPACE) {
             jumpKeyDown = true;
+        }
+
+        if (key.sym == SDLK_z) {
+            attackKeyDown = true;
+        }
+
+        if (attackKeyDown && !this->attackHeld) {
+            this->characterInfo.attacking = true;
+            this->attackHeld = true;
         }
 
         if (jumpKeyDown && !this->characterInfo.jumpHeld) {
@@ -34,5 +44,9 @@ void CharacterInputHandler::handleInput(std::list<SDL_Keysym> keys)
 
     if (!jumpKeyDown) {
         this->characterInfo.jumpHeld = false;
+    }
+
+    if (!attackKeyDown) {
+        this->attackHeld = false;
     }
 }

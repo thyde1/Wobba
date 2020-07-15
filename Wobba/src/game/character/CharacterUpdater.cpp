@@ -64,4 +64,18 @@ void CharacterUpdater::update(int elapsed)
     }
 
     this->characterInfo.isGrounded = isGrounded;
+
+    this->updateAttackingStatus(elapsed);
+}
+
+void CharacterUpdater::updateAttackingStatus(int elapsed)
+{
+    if (this->characterInfo.attacking) {
+        this->attackDuration += elapsed;
+    }
+
+    if (this->characterInfo.attacking && this->attackDuration >= 300) {
+        this->characterInfo.attacking = false;
+        this->attackDuration = 0;
+    }
 }

@@ -6,6 +6,7 @@
 #include "CharacterCollisionHandler.h"
 #include "CharacterInputHandler.h"
 #include "CharacterRenderer.h"
+#include "SwordRenderer.h"
 
 CharacterFactory::CharacterFactory(Game &game) : game(game)
 {
@@ -23,6 +24,7 @@ GameObject *CharacterFactory::create()
         ->addComponent(groundCollider)
         ->addComponent(jumpSoundPlayer)
         ->addRenderer(new CharacterRenderer(characterInfo))
+        ->addRenderer(new SwordRenderer(*characterInfo))
         ->addCollider(ColliderType::ACTIVE, new Collider(characterInfo->size))
         ->addCollider(ColliderType::PASSIVE, groundCollider)
         ->addUpdater(new CharacterUpdater(*characterInfo, *groundCollider, *jumpSoundPlayer))

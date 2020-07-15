@@ -9,4 +9,5 @@ public:
     void handleInput(std::list<SDL_Keysym> keys);
 private:
     CharacterInfo &characterInfo;
+    bool attackHeld = false;
 };

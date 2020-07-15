@@ -12,4 +12,6 @@ private:
     CharacterInfo &characterInfo;
     Collider &groundCollider;
     SoundPlayer jumpSoundPlayer;
+    void updateAttackingStatus(int elapsed);
+    int attackDuration = 0;
 };

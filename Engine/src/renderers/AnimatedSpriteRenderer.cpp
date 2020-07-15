@@ -19,8 +19,13 @@ void AnimatedSpriteRenderer::render()
     }
 
     auto ticks = SDL_GetTicks();
-    this->elapsed += ticks - prevFrame;
     auto animation = this->getAnimation();
+    if (animation.startFrame != prevFrameAnimation.startFrame) {
+        this->elapsed = 0;
+    }
+    else {
+        this->elapsed += ticks - prevFrame;
+    }
     auto currentFrame = (this->elapsed / 100) % animation.frameCount + animation.startFrame;
     auto cameraPosition = this->gameObject->game->cameraPosition;
 
@@ -28,6 +33,7 @@ void AnimatedSpriteRenderer::render()
     SDL_Rect destRect = { (int)(this->gameObject->getGlobalPosition().x - cameraPosition.x), (int)(this->gameObject->getGlobalPosition().y - cameraPosition.y), this->destSize.w, this->destSize.h };
     SDL_RenderCopyEx(this->sdlRenderer, texture, &srcRect, &destRect, NULL, &this->center, animation.flippedHorizontal ? SDL_RendererFlip::SDL_FLIP_HORIZONTAL : SDL_RendererFlip::SDL_FLIP_NONE);
     this->prevFrame = ticks;
+    this->prevFrameAnimation = animation;
 }
 
 Animation AnimatedSpriteRenderer::getAnimation()

@@ -11,6 +11,10 @@ CharacterRenderer::CharacterRenderer(CharacterInfo *characterInfo) :
 
 Animation CharacterRenderer::getAnimation()
 {
+    if (this->characterInfo->attacking) {
+        return attackingRight;
+    }
+
     if (!this->characterInfo->isGrounded) {
         switch (this->characterInfo->direction) {
         case Direction::LEFT:
