@@ -10,6 +10,4 @@ public:
     GVector<int> getOffset();
 private:
     CharacterInfo &characterInfo;
-    int attackingTime = 0;
-    int lastFrameTime = 0;
 };

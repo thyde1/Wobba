@@ -7,6 +7,7 @@
 #include "CharacterInputHandler.h"
 #include "CharacterRenderer.h"
 #include "SwordRenderer.h"
+#include "SwordCollider.h"
 
 CharacterFactory::CharacterFactory(Game &game) : game(game)
 {
@@ -16,6 +17,7 @@ GameObject *CharacterFactory::create()
 {
     auto characterInfo = new CharacterInfo;
     auto groundCollider = new Collider(Size{ characterInfo->size.w, 1 }, { 0, (double)characterInfo->size.h });
+    Collider *swordCollider = new SwordCollider(*characterInfo);
     auto jumpSoundPlayer = new SoundPlayer("assets/Jump.wav");
 
     return this->game.instantiateObject()
@@ -26,10 +28,11 @@ GameObject *CharacterFactory::create()
         ->addRenderer(new CharacterRenderer(characterInfo))
         ->addRenderer(new SwordRenderer(*characterInfo))
         ->addCollider(ColliderType::ACTIVE, new Collider(characterInfo->size))
+        ->addCollider(ColliderType::ACTIVE, swordCollider)
         ->addCollider(ColliderType::PASSIVE, groundCollider)
         ->addUpdater(new CharacterUpdater(*characterInfo, *groundCollider, *jumpSoundPlayer))
         ->addUpdater(new CameraUpdater())
         ->addUpdater(new DeathChecker())
-        ->addCollisionHandler(new CharacterCollisionHandler(*characterInfo))
+        ->addCollisionHandler(new CharacterCollisionHandler(*characterInfo, *swordCollider))
         ->addInputHandler(new CharacterInputHandler(*characterInfo));
 }

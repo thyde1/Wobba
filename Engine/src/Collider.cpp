@@ -20,7 +20,7 @@ void Collider::setGameObject(GameObject *gameObject)
 
 Collision Collider::checkCollision(Collider *collider)
 {
-    Vector thisPosition = this->gameObject->getGlobalPosition() + this->offset;
+    Vector thisPosition = this->gameObject->getGlobalPosition() + this->getOffset();
     Vector thisVelocity = this->gameObject->velocity;
     Vector otherPosition = collider->gameObject->getGlobalPosition() + collider->offset;
     Vector otherVelocity = collider->gameObject->velocity;
@@ -124,4 +124,9 @@ Vector Collider::getCollisionNormal(Size &sizeA, Vector &posA, Vector &velA, Siz
             return { 1, 0 };
         }
     }
+}
+
+Vector Collider::getOffset()
+{
+    return this->offset;
 }

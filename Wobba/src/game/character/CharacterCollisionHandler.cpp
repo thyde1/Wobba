@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../components/Damager.h"
 
-CharacterCollisionHandler::CharacterCollisionHandler(CharacterInfo &characterInfo) : characterInfo(characterInfo)
+CharacterCollisionHandler::CharacterCollisionHandler(CharacterInfo &characterInfo, Collider &swordCollider) : characterInfo(characterInfo), swordCollider(swordCollider)
 {
 }
 
@@ -11,6 +11,11 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
     auto thisCollider = collision.colliderA;
     auto collider = collision.colliderB;
     auto normal = collision.normal;
+
+    if (thisCollider->getId() == this->swordCollider.getId()) {
+        this->handleSwordCollision(collider);
+        return;
+    }
 
     if (!thisCollider->checkCollision(collider).isCollision) {
         // Collision has already been resolved, no need to do so again
@@ -26,6 +31,7 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
         auto characterInfo = this->gameObject->getComponent<CharacterInfo>();
         characterInfo->alive = false;
     }
+
 
     auto position = this->gameObject->getGlobalPosition();
 
@@ -49,4 +55,10 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
     }
 
     this->gameObject->setGlobalPosition(position);
+}
+
+void CharacterCollisionHandler::handleSwordCollision(Collider *collider)
+{
+    this->getGameObject()->game->destroyObject(collider->getGameObject());
+    std::cout << "Sword hit!" << std::endl;
 }

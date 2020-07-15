@@ -5,8 +5,10 @@
 
 class CharacterCollisionHandler : public CollisionHandler {
 public:
-    CharacterCollisionHandler(CharacterInfo &characterInfo);
+    CharacterCollisionHandler(CharacterInfo &characterInfo, Collider &swordCollider);
     void handleCollision(Collision collision);
 private:
     CharacterInfo &characterInfo;
+    Collider &swordCollider;
+    void handleSwordCollision(Collider *collider);
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDL.h"
+#include <vector>
 #include <list>
 #include <map>
 #include <bitset>
@@ -21,7 +22,7 @@ public:
     virtual ~GameObject();
     Game *game;
     void update(int elapsed);
-    Collision checkCollision(GameObject *object, bool includeTriggers);
+    std::vector<Collision> checkCollision(GameObject *object, bool includeTriggers);
     Collision checkCollision(Collider &collider, bool includeTriggers);
     virtual void handleCollision(Collision collision);
     void handleInput(std::list<SDL_Keysym> keys);
@@ -67,6 +68,7 @@ private:
     std::list<InputHandler *> inputHandlers;
     std::list<CollisionHandler *> collisionHandlers;
     std::list<GameCollider *> colliders;
+    std::vector<GameObject *> gameObjects;
     std::map<int, Component *> components;
     std::bitset<128> componentsBitset;
     static int getNewComponentTypeId()

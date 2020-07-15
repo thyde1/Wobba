@@ -29,8 +29,10 @@ public:
     void setGameObject(GameObject *gameObject);
     Collision checkCollision(Collider *collider);
     Size size;
-    Vector offset;
     static CollisionCheckResult checkCollision(Size &sizeA, Vector &posA, Vector &velA, Size &sizeB, Vector &posB);
     static Vector getCollisionNormal(Size &sizeA, Vector &posA, Vector &velA, Size &sizeB, Vector &posB);
+    virtual Vector getOffset();
+private:
+    Vector offset;
 };
 

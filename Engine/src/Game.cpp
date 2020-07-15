@@ -114,8 +114,7 @@ void Game::checkCollisions(bool includeTriggers)
         auto nearbyGameObjects = this->gameObjectsByLocation.get(thisPosition);
         for (GameObject *other : nearbyGameObjects) {
             if (other != gameObject) {
-                auto collision = gameObject->checkCollision(other, includeTriggers);
-                if (collision.isCollision) {
+                for (auto collision : gameObject->checkCollision(other, includeTriggers)) {
                     collisions.push_front(collision);
                 }
             }

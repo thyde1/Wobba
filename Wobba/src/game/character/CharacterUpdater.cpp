@@ -71,11 +71,11 @@ void CharacterUpdater::update(int elapsed)
 void CharacterUpdater::updateAttackingStatus(int elapsed)
 {
     if (this->characterInfo.attacking) {
-        this->attackDuration += elapsed;
+        this->characterInfo.attackDuration += elapsed;
     }
 
-    if (this->characterInfo.attacking && this->attackDuration >= 300) {
+    if (this->characterInfo.attacking && this->characterInfo.attackDuration >= 300) {
         this->characterInfo.attacking = false;
-        this->attackDuration = 0;
+        this->characterInfo.attackDuration = 0;
     }
 }

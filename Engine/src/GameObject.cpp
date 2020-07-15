@@ -37,16 +37,20 @@ void GameObject::update(int elapsed)
     }
 }
 
-Collision GameObject::checkCollision(GameObject *object, bool includeTriggers)
+std::vector<Collision> GameObject::checkCollision(GameObject *object, bool includeTriggers)
 {
+    std::vector<Collision> collisions;
     for (auto gameCollider : this->colliders)
     {
-        if (gameCollider->type == ColliderType::ACTIVE) {
-            return object->checkCollision(*gameCollider->collider, includeTriggers);
+        if (gameCollider->type == ColliderType::ACTIVE && (!gameCollider->collider->isTrigger || includeTriggers)) {
+            auto collisionResult = object->checkCollision(*gameCollider->collider, includeTriggers);
+            if (collisionResult.isCollision) {
+                collisions.push_back(collisionResult);
+            }
         }
     }
 
-    return Collision{ false };
+    return collisions;
 }
 
 Collision GameObject::checkCollision(Collider &collider, bool includeTriggers)
@@ -54,7 +58,7 @@ Collision GameObject::checkCollision(Collider &collider, bool includeTriggers)
     for (auto gameCollider : this->colliders)
     {
         if (!includeTriggers && gameCollider->collider->isTrigger) {
-            break;
+             continue;
         }
 
         auto thisCollider = gameCollider->collider;
