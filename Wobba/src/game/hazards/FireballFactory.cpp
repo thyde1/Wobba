@@ -9,7 +9,7 @@ FireballFactory::FireballFactory(Game &game) : game(game)
 GameObject *FireballFactory::create(Vector position)
 {
     return this->game.instantiateObject()
-        ->setGlobalPosition(position)
+        ->setGlobalPosition(position + Vector{ 2, 0 })
         ->addRenderer(new SpriteRenderer("assets/fireball.png"))
         ->addCollider(ColliderType::PASSIVE, new Collider(Size{ 5, 5 }, { 0, 0 }, true))
         ->addComponent(new Damager())
