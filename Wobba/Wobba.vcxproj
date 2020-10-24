@@ -162,10 +162,12 @@
     <ClCompile Include="src\game\character\SwordRenderer.cpp" />
     <ClCompile Include="src\game\components\DamagedSoundPlayer.cpp" />
     <ClCompile Include="src\game\components\DamageTaker.cpp" />
+    <ClCompile Include="src\game\components\SetLifespanUpdater.cpp" />
     <ClCompile Include="src\game\enemies\CreepyFactory.cpp" />
     <ClCompile Include="src\game\enemies\CreepyInfo.cpp" />
     <ClCompile Include="src\game\enemies\CreepyRenderer.cpp" />
     <ClCompile Include="src\game\enemies\CreepyUpdater.cpp" />
+    <ClCompile Include="src\game\enemies\DeadCreepyFactory.cpp" />
     <ClCompile Include="src\game\levelLoader\GameObjectFactory.cpp" />
     <ClCompile Include="src\game\levelLoader\LevelLoader.cpp" />
     <ClCompile Include="src\game\ui\DeadInputHandler.cpp" />
@@ -193,10 +195,12 @@
     <ClInclude Include="src\game\character\CharacterUpdater.h" />
     <ClInclude Include="src\game\character\SwordCollider.h" />
     <ClInclude Include="src\game\character\SwordRenderer.h" />
+    <ClInclude Include="src\game\components\SetLifespanUpdater.h" />
     <ClInclude Include="src\game\enemies\CreepyFactory.h" />
     <ClInclude Include="src\game\enemies\CreepyInfo.h" />
     <ClInclude Include="src\game\enemies\CreepyRenderer.h" />
     <ClInclude Include="src\game\enemies\CreepyUpdater.h" />
+    <ClInclude Include="src\game\enemies\DeadCreepyFactory.h" />
     <ClInclude Include="src\game\levelLoader\GameObjectFactory.h" />
     <ClInclude Include="src\game\levelLoader\LevelLoader.h" />
     <ClInclude Include="src\game\ui\DeadInputHandler.h" />
@@ -240,6 +244,7 @@
     <Image Include="assets\lava.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="assets\sword.png" />
     <Image Include="assets\terrain.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>

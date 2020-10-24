@@ -1,14 +1,14 @@
 #include "DamageTaker.h"
-#include "DamagedSoundPlayer.h"
+#include "../enemies/DeadCreepyFactory.h"
 
-DamageTaker::DamageTaker(int health) : health(health)
+DamageTaker::DamageTaker(int health, DamagedSoundPlayer &damagedSoundPlayer) : health(health), damagedSoundPlayer(damagedSoundPlayer)
 {
 }
 
 void DamageTaker::takeDamage(int damage)
 {
-    auto damagedSoundPlayer = this->getGameObject()->getComponent<DamagedSoundPlayer>();
-    damagedSoundPlayer->play();
+    this->damagedSoundPlayer.play();
+    DeadCreepyFactory(*this->getGameObject()->game).Create(this->getGameObject()->getGlobalPosition());
     this->health--;
     if (this->health <= 0) {
         this->getGameObject()->game->destroyObject(this->getGameObject());

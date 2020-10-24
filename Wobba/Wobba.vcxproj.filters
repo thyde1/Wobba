@@ -99,6 +99,12 @@
     <ClCompile Include="src\game\components\DamagedSoundPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\enemies\DeadCreepyFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\components\SetLifespanUpdater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -198,6 +204,12 @@
     <ClInclude Include="src\game\components\DamagedSoundPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\enemies\DeadCreepyFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\SetLifespanUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\character.png">
@@ -222,6 +234,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\blueCreepy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\sword.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
