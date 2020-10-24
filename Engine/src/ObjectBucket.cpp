@@ -15,11 +15,12 @@ void ObjectBucket::insert(GameObject *gameObject)
     this->gameObjectBuckets[gameObject] = bucketKey;
 }
 
-std::list<GameObject *> ObjectBucket::get(Vector &location)
+std::list<GameObject *> ObjectBucket::get(Vector &location, double maxWidth)
 {
     auto bucketKey = this->getBucketKey(location);
+    auto bucketsToCheckEitherSide = std::ceil(maxWidth / bucketSize);
     std::list<GameObject *> result;
-    for (int offset = -1; offset <= 1; offset++) {
+    for (int offset = -bucketsToCheckEitherSide; offset <= bucketsToCheckEitherSide; offset++) {
         std::list<GameObject*> bucket(this->gameObjectsByLocation[bucketKey + offset]);
         result.splice(result.begin(), bucket);
     }

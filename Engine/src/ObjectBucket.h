@@ -8,7 +8,7 @@ class ObjectBucket {
 public:
     ObjectBucket(int bucketSize);
     void insert(GameObject *gameObject);
-    std::list<GameObject*> get(Vector &location);
+    std::list<GameObject*> get(Vector &location, double maxWidth);
     void remove(GameObject *gameObject);
     void updateLocation(GameObject *gameObject);
 

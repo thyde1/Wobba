@@ -111,7 +111,8 @@ void Game::checkCollisions(bool includeTriggers)
     {
         std::list<Collision> collisions;
         auto thisPosition = gameObject->getGlobalPosition();
-        auto nearbyGameObjects = this->gameObjectsByLocation.get(thisPosition);
+        auto thisMaxWidth = gameObject->getMaxWidth();
+        auto nearbyGameObjects = this->gameObjectsByLocation.get(thisPosition, thisMaxWidth);
         for (GameObject *other : nearbyGameObjects) {
             if (other != gameObject) {
                 for (auto collision : gameObject->checkCollision(other, includeTriggers)) {
@@ -148,8 +149,10 @@ void Game::checkCollisions(bool includeTriggers)
 
 std::list<Collision> Game::checkCollisions(Collider collider, bool includeTriggers)
 {
-    auto position = collider.getGameObject()->getGlobalPosition();
-    auto nearbyGameObjects = this->gameObjectsByLocation.get(position);
+    auto gameObject = collider.getGameObject();
+    auto position = gameObject->getGlobalPosition();
+    auto objectMaxWidth = gameObject->getMaxWidth();
+    auto nearbyGameObjects = this->gameObjectsByLocation.get(position, objectMaxWidth);
     std::list<Collision> collisions;
     for (GameObject *other : nearbyGameObjects) {
         if (other != collider.getGameObject()) {

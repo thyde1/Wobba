@@ -43,6 +43,7 @@ public:
     }
     GameObject* setGlobalPosition(Vector position);
     Vector getGlobalPosition();
+    double getMaxWidth();
     template <class T>
     bool hasComponent()
     {

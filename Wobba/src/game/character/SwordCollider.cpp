@@ -7,7 +7,7 @@ SwordCollider::SwordCollider(CharacterInfo &characterInfo) : Collider({ 4, 1 }, 
 Vector SwordCollider::getOffset()
 {
     if (this->characterInfo.attacking) {
-        return { 8 + (double)this->characterInfo.attackDuration / 100, 4 };
+        return { (double)this->characterInfo.attackDuration / 100 + 6, 4 };
     }
 
     return { 4, 4 };

@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "GameObject.h"
 #include "InputHandler.h"
 #include "Updater.h"
@@ -144,4 +146,9 @@ GameObject *GameObject::setGlobalPosition(Vector position)
 Vector GameObject::getGlobalPosition()
 {
     return this->globalPosition;
+}
+
+double GameObject::getMaxWidth()
+{
+    return 16;
 }

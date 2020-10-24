@@ -12,7 +12,7 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
     auto collider = collision.colliderB;
     auto normal = collision.normal;
 
-    if (thisCollider->getId() == this->swordCollider.getId()) {
+    if (thisCollider->getId() == this->swordCollider.getId() && thisCollider->getGameObject()->getComponent<CharacterInfo>()->attacking) {
         this->handleSwordCollision(collider);
         return;
     }
@@ -60,5 +60,4 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
 void CharacterCollisionHandler::handleSwordCollision(Collider *collider)
 {
     this->getGameObject()->game->destroyObject(collider->getGameObject());
-    std::cout << "Sword hit!" << std::endl;
 }
