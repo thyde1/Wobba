@@ -11,12 +11,15 @@ CharacterRenderer::CharacterRenderer(CharacterInfo *characterInfo) :
 
 Animation CharacterRenderer::getAnimation()
 {
-    if (this->characterInfo->attacking) {
+    if (this->characterInfo->attacking && this->characterInfo->lastMovementDirection == Direction::LEFT) {
+        return attackingLeft;
+    }
+    else if (this->characterInfo->attacking && this->characterInfo->lastMovementDirection == Direction::RIGHT) {
         return attackingRight;
     }
 
     if (!this->characterInfo->isGrounded) {
-        switch (this->characterInfo->direction) {
+        switch (this->characterInfo->currentMovementDirection) {
         case Direction::LEFT:
             return jumpingLeft;
         case Direction::RIGHT:
@@ -26,12 +29,17 @@ Animation CharacterRenderer::getAnimation()
         }
     }
 
-    switch (this->characterInfo->direction) {
+    switch (this->characterInfo->currentMovementDirection) {
     case Direction::LEFT:
         return walkingLeft;
     case Direction::RIGHT:
         return walkingRight;
     default:
-        return idle;
+        if (this->characterInfo->lastMovementDirection == Direction::LEFT) {
+            return idleLeft;
+        }
+        else if (this->characterInfo->lastMovementDirection == Direction::RIGHT) {
+            return idleRight;
+        }
     }
 }

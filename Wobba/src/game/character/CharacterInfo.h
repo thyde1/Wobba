@@ -6,7 +6,8 @@ class CharacterInfo : public Component {
 public:
     Size size = { 8, 8 };
     bool isGrounded = false;
-    Direction direction = Direction::NONE;
+    Direction currentMovementDirection = Direction::NONE;
+    Direction lastMovementDirection = Direction::RIGHT;
     bool jumping = false;
     bool jumpHeld = false;
     bool attacking = false;

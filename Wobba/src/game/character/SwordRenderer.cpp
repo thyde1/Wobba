@@ -19,5 +19,10 @@ void SwordRenderer::render()
 
 GVector<int> SwordRenderer::getOffset()
 {
-    return { this->characterInfo.attackDuration / 100 + 6, 4 };
+    if (this->characterInfo.lastMovementDirection == Direction::LEFT) {
+        return { -this->characterInfo.attackDuration / 100 - 2, 4 };
+    }
+    else {
+        return { this->characterInfo.attackDuration / 100 + 6, 4 };
+    }
 }

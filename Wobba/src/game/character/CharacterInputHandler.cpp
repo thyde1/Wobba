@@ -6,7 +6,7 @@ CharacterInputHandler::CharacterInputHandler(CharacterInfo &characterInfo) : cha
 
 void CharacterInputHandler::handleInput(std::list<SDL_Keysym> keys)
 {
-    this->characterInfo.direction = Direction::NONE;
+    this->characterInfo.currentMovementDirection = Direction::NONE;
     this->characterInfo.jumping = false;
     bool jumpKeyDown = false;
     bool attackKeyDown = false;
@@ -34,10 +34,12 @@ void CharacterInputHandler::handleInput(std::list<SDL_Keysym> keys)
 
         switch (key.sym) {
         case SDLK_RIGHT:
-            this->characterInfo.direction = Direction::RIGHT;
+            this->characterInfo.currentMovementDirection = Direction::RIGHT;
+            this->characterInfo.lastMovementDirection = Direction::RIGHT;
             break;
         case SDLK_LEFT:
-            this->characterInfo.direction = Direction::LEFT;
+            this->characterInfo.currentMovementDirection = Direction::LEFT;
+            this->characterInfo.lastMovementDirection = Direction::LEFT;
             break;
         }
     }

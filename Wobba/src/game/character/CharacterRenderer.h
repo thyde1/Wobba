@@ -10,7 +10,8 @@ private:
     CharacterInfo *characterInfo;
     Animation getAnimation();
     const Animation
-        idle = { 0, 1, false },
+        idleRight = { 0, 1, false },
+        idleLeft = { 0, 1, true },
         walkingRight = { 1, 8, false },
         walkingLeft = { 1, 8, true }, 
         jumpingUp = { 9, 2, false },

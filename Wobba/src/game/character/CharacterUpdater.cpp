@@ -23,15 +23,15 @@ void CharacterUpdater::update(int elapsed)
         }
     }
 
-    if (this->characterInfo.direction == Direction::LEFT) {
+    if (this->characterInfo.currentMovementDirection == Direction::LEFT) {
         this->gameObject->velocity.x = std::max(std::min(this->gameObject->velocity.x - elapsed * runAcceleration, 0.), -runSpeed);
     }
 
-    if (this->characterInfo.direction == Direction::RIGHT) {
+    if (this->characterInfo.currentMovementDirection == Direction::RIGHT) {
         this->gameObject->velocity.x = std::min(std::max(this->gameObject->velocity.x + elapsed * runAcceleration, 0.), runSpeed);
     }
 
-    if (this->characterInfo.direction == Direction::NONE) {
+    if (this->characterInfo.currentMovementDirection == Direction::NONE) {
         this->gameObject->velocity.x = 0;
     }
 
