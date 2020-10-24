@@ -35,11 +35,6 @@ Animation CharacterRenderer::getAnimation()
     case Direction::RIGHT:
         return walkingRight;
     default:
-        if (this->characterInfo->lastMovementDirection == Direction::LEFT) {
-            return idleLeft;
-        }
-        else if (this->characterInfo->lastMovementDirection == Direction::RIGHT) {
-            return idleRight;
-        }
+        return this->characterInfo->lastMovementDirection == Direction::LEFT ? idleLeft : idleRight;
     }
 }

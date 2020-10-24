@@ -14,7 +14,7 @@ void SwordRenderer::render()
         return;
     }
 
-    SpriteRenderer::render();
+    SpriteRenderer::render(this->characterInfo.lastMovementDirection == Direction::LEFT ? Flip::HORIZONTAL : Flip::NONE);
 }
 
 GVector<int> SwordRenderer::getOffset()
