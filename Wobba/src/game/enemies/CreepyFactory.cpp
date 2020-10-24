@@ -19,6 +19,6 @@ GameObject *CreepyFactory::create(Vector position)
         ->addCollider(ColliderType::PASSIVE, new Collider({ 8, 4 }, { 0, 4 }, true))
         ->addComponent(new Damager())
         ->addComponent(new DamageTaker(1))
-        ->addComponent(new DamagedSoundPlayer("assets/Death.wav"))
+        ->addComponent(new DamagedSoundPlayer("assets/CreepyDeath.wav"))
         ->setGlobalPosition(position + Vector{ 2, 2 });
 }
