@@ -3,6 +3,7 @@
 #include "CreepyRenderer.h"
 #include "../components/Damager.h"
 #include "../components/DamageTaker.h"
+#include "../components/DamagedSoundPlayer.h"
 
 CreepyFactory::CreepyFactory(Game &game, CreepyColor creepyColor) : game(game), creepyColor(creepyColor)
 {
@@ -18,5 +19,6 @@ GameObject *CreepyFactory::create(Vector position)
         ->addCollider(ColliderType::PASSIVE, new Collider({ 8, 4 }, { 0, 4 }, true))
         ->addComponent(new Damager())
         ->addComponent(new DamageTaker(1))
+        ->addComponent(new DamagedSoundPlayer("assets/Death.wav"))
         ->setGlobalPosition(position + Vector{ 2, 2 });
 }

@@ -96,6 +96,9 @@
     <ClCompile Include="src\game\components\DamageTaker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\components\DamagedSoundPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -190,6 +193,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\DamageTaker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\components\DamagedSoundPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,16 +1,12 @@
 #include "SoundPlayer.h"
 
-SoundPlayer::SoundPlayer(const char *wavFile)
+SoundPlayer::SoundPlayer(const char *wavFile) : wavFile(wavFile)
 {
-    this->wav = Mix_LoadWAV(wavFile);
-}
-
-SoundPlayer::~SoundPlayer()
-{
-    Mix_FreeChunk(this->wav);
 }
 
 void SoundPlayer::play()
 {
-    Mix_PlayChannel(-1, this->wav, 0);
+    auto gameObject = this->getGameObject();
+    auto soundManager = &this->getGameObject()->game->soundManager;
+    Mix_PlayChannel(-1, soundManager->getChunk(this->wavFile), 0);
 }

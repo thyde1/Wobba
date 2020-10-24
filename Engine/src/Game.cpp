@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Game.h"
 #include "SDL_mixer.h"
-#include "TextureManager.h"
 #include "Collider.h"
 
 Game::Game(const char *title, Size windowSize, int collisionBucketSize)
@@ -11,6 +10,7 @@ Game::Game(const char *title, Size windowSize, int collisionBucketSize)
 {
     this->sdlInit();
     this->textureManager = TextureManager(this->renderer);
+    this->soundManager = SoundManager();
 }
 
 Game::~Game()

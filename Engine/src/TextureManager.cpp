@@ -12,7 +12,7 @@ TextureManager::TextureManager(SDL_Renderer *sdlRenderer)
     this->sdlRenderer = sdlRenderer;
 }
 
-SDL_Texture* TextureManager::getTexture(const char *imagePath)
+SDL_Texture *TextureManager::getTexture(const char *imagePath)
 {
     if (this->textures.count(imagePath) == 0) {
         SDL_Surface *tempSurface = IMG_Load(imagePath);

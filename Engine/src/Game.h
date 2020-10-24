@@ -6,6 +6,7 @@
 #include <list>
 #include <set>
 #include "TextureManager.h"
+#include "SoundManager.h"
 #include "Size.h"
 #include "Vector.h"
 #include "ObjectBucket.h"
@@ -15,6 +16,7 @@ public:
     Game(const char *title, Size windowSize, int collisionBucketSize);
     ~Game();
     TextureManager textureManager;
+    SoundManager soundManager;
     Size windowSize;
     void sdlInit();
     virtual void init() = 0;
