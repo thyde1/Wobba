@@ -160,6 +160,7 @@
     <ClCompile Include="src\game\character\CharacterUpdater.cpp" />
     <ClCompile Include="src\game\character\SwordCollider.cpp" />
     <ClCompile Include="src\game\character\SwordRenderer.cpp" />
+    <ClCompile Include="src\game\components\DamageTaker.cpp" />
     <ClCompile Include="src\game\enemies\CreepyFactory.cpp" />
     <ClCompile Include="src\game\enemies\CreepyInfo.cpp" />
     <ClCompile Include="src\game\enemies\CreepyRenderer.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="src\game\Wobba.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\components\DamageTaker.h" />
     <ClInclude Include="src\game\character\CameraUpdater.h" />
     <ClInclude Include="src\game\character\CharacterCollisionHandler.h" />
     <ClInclude Include="src\game\character\CharacterFactory.h" />

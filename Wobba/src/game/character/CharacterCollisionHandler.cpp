@@ -1,6 +1,7 @@
 #include "CharacterCollisionHandler.h"
 #include <iostream>
 #include "../components/Damager.h"
+#include "../components/DamageTaker.h"
 
 CharacterCollisionHandler::CharacterCollisionHandler(CharacterInfo &characterInfo, Collider &swordCollider) : characterInfo(characterInfo), swordCollider(swordCollider)
 {
@@ -59,5 +60,9 @@ void CharacterCollisionHandler::handleCollision(Collision collision)
 
 void CharacterCollisionHandler::handleSwordCollision(Collider *collider)
 {
-    this->getGameObject()->game->destroyObject(collider->getGameObject());
+    auto otherGameObject = collider->getGameObject();
+    auto damageTaker = otherGameObject->getComponent<DamageTaker>();
+    if (damageTaker != NULL) {
+        damageTaker->takeDamage(1);
+    }
 }
