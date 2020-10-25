@@ -16,7 +16,7 @@ public:
     void render();
 private:
     virtual Animation getAnimation();
-    Animation prevFrameAnimation;
+    Animation prevFrameAnimation = { -1, 1, false };
     int frameCount;
     Size frameSize;
     Size destSize;
