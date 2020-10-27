@@ -105,6 +105,9 @@
     <ClCompile Include="src\game\components\SetLifespanUpdater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\terrain\GoalFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -208,6 +211,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\components\SetLifespanUpdater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\terrain\GoalFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

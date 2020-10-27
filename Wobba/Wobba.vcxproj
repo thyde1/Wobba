@@ -170,6 +170,7 @@
     <ClCompile Include="src\game\enemies\DeadCreepyFactory.cpp" />
     <ClCompile Include="src\game\levelLoader\GameObjectFactory.cpp" />
     <ClCompile Include="src\game\levelLoader\LevelLoader.cpp" />
+    <ClCompile Include="src\game\terrain\GoalFactory.cpp" />
     <ClCompile Include="src\game\ui\DeadInputHandler.cpp" />
     <ClCompile Include="src\game\ui\DeadRenderer.cpp" />
     <ClCompile Include="src\game\character\DeathChecker.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="src\game\enemies\DeadCreepyFactory.h" />
     <ClInclude Include="src\game\levelLoader\GameObjectFactory.h" />
     <ClInclude Include="src\game\levelLoader\LevelLoader.h" />
+    <ClInclude Include="src\game\terrain\GoalFactory.h" />
     <ClInclude Include="src\game\ui\DeadInputHandler.h" />
     <ClInclude Include="src\game\ui\DeadRenderer.h" />
     <ClInclude Include="src\game\character\DeathChecker.h" />

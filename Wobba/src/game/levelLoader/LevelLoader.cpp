@@ -6,13 +6,13 @@
 #include <boost/archive/iterators/transform_width.hpp>
 #include <boost/archive/iterators/remove_whitespace.hpp>
 
-LevelLoader::LevelLoader(Game &game) :
-    game(game),
-    terrainFactory(TerrainFactory(game)),
-    lavaFactory(LavaFactory(game)),
-    fireballFactory(FireballFactory(game)),
-    creepyFactory(CreepyFactory(game, CreepyColor::green)),
-    blueCreepyFactory(CreepyFactory(game, CreepyColor::blue))
+#include "../terrain/TerrainFactory.h"
+#include "../terrain/LavaFactory.h"
+#include "../hazards/FireballFactory.h"
+#include "../enemies/CreepyFactory.h"
+#include "../terrain/GoalFactory.h"
+
+LevelLoader::LevelLoader(Game &game) : game(game)
 {
 }
 
@@ -31,9 +31,9 @@ namespace {
 
     GVector<int> getTileSizes(rapidxml::xml_document<> *document)
     {
-        auto tileset = document->first_node("map")->first_node("tileset");
-        auto tileWidth = std::atoi(tileset->first_attribute("tilewidth")->value());
-        auto tileHeight = std::atoi(tileset->first_attribute("tileheight")->value());
+        auto map = document->first_node("map");
+        auto tileWidth = std::atoi(map->first_attribute("tilewidth")->value());
+        auto tileHeight = std::atoi(map->first_attribute("tileheight")->value());
         return { tileWidth, tileHeight };
     }
 
@@ -103,11 +103,12 @@ std::map<Uint32, GameObjectFactory*> LevelLoader::getObjectIndexFactories(rapidx
     auto tileset = document->first_node("map")->first_node("tileset");
     int firstGid = std::stoi(document->first_node("map")->first_node("tileset")->first_attribute("firstgid")->value());
     std::map<std::string, GameObjectFactory*> objectFactories = {
-        { "Terrain", &this->terrainFactory },
-        { "Lava", &this->lavaFactory },
-        { "Creepy", &this->creepyFactory },
-        { "BlueCreepy", &this->blueCreepyFactory },
-        { "Fireball", &this->fireballFactory },
+        { "Terrain", new TerrainFactory(this->game) },
+        { "Lava", new LavaFactory(this->game) },
+        { "Creepy", new CreepyFactory(this->game, CreepyColor::green) },
+        { "BlueCreepy", new CreepyFactory(this->game, CreepyColor::blue) },
+        { "Fireball", new FireballFactory(this->game) },
+        { "Goal", new GoalFactory(this->game)}
     };
 
     std::map<Uint32, GameObjectFactory*> objectIndexFactories;
