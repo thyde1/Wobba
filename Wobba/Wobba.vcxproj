@@ -238,7 +238,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\blueCreepy.png" />
+    <Image Include="assets\blueCreepy.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="assets\character.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
@@ -246,25 +248,35 @@
     <Image Include="assets\creepy.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="assets\deadCreepy.png" />
+    <Image Include="assets\deadCreepy.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="assets\fireball.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="assets\goal.png" />
+    <Image Include="assets\goal.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="assets\lava.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="assets\sword.png" />
+    <Image Include="assets\sword.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="assets\terrain.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
     <Image Include="assets\terrain2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="assets\verdana.ttf" />
+    <Font Include="assets\verdana.ttf">
+      <DeploymentContent>true</DeploymentContent>
+    </Font>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="assets\CreepyDeath.wav" />
+    <Media Include="assets\CreepyDeath.wav">
+      <DeploymentContent>true</DeploymentContent>
+    </Media>
     <Media Include="assets\Death.wav">
       <DeploymentContent>true</DeploymentContent>
     </Media>
