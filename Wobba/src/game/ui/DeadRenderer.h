@@ -2,7 +2,9 @@
 
 #include <Engine.h>
 
-class DeadRenderer : public Renderer {
+#include "ClearScreenRenderer.h"
+
+class DeadRenderer : public ClearScreenRenderer {
 public:
-    void render();
+    DeadRenderer();
 };

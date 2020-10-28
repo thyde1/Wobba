@@ -1,7 +1,5 @@
 #include "DeadRenderer.h"
 
-void DeadRenderer::render()
+DeadRenderer::DeadRenderer() : ClearScreenRenderer({ 255, 0, 0, 255 })
 {
-    SDL_SetRenderDrawColor(this->sdlRenderer, 255, 0, 0, 255);
-    SDL_RenderClear(this->sdlRenderer);
 }

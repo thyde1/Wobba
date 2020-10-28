@@ -168,9 +168,11 @@
     <ClCompile Include="src\game\enemies\CreepyRenderer.cpp" />
     <ClCompile Include="src\game\enemies\CreepyUpdater.cpp" />
     <ClCompile Include="src\game\enemies\DeadCreepyFactory.cpp" />
+    <ClCompile Include="src\game\goal\WinCollisionHandler.cpp" />
     <ClCompile Include="src\game\levelLoader\GameObjectFactory.cpp" />
     <ClCompile Include="src\game\levelLoader\LevelLoader.cpp" />
-    <ClCompile Include="src\game\terrain\GoalFactory.cpp" />
+    <ClCompile Include="src\game\goal\GoalFactory.cpp" />
+    <ClCompile Include="src\game\ui\ClearScreenRenderer.cpp" />
     <ClCompile Include="src\game\ui\DeadInputHandler.cpp" />
     <ClCompile Include="src\game\ui\DeadRenderer.cpp" />
     <ClCompile Include="src\game\character\DeathChecker.cpp" />
@@ -181,6 +183,7 @@
     <ClCompile Include="src\game\terrain\TerrainFactory.cpp" />
     <ClCompile Include="src\game\ui\DeathScreenFactory.cpp" />
     <ClCompile Include="src\game\ui\DeathUpdater.cpp" />
+    <ClCompile Include="src\game\ui\WinScreenFactory.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\game\Wobba.cpp" />
   </ItemGroup>
@@ -202,9 +205,11 @@
     <ClInclude Include="src\game\enemies\CreepyRenderer.h" />
     <ClInclude Include="src\game\enemies\CreepyUpdater.h" />
     <ClInclude Include="src\game\enemies\DeadCreepyFactory.h" />
+    <ClInclude Include="src\game\goal\WinCollisionHandler.h" />
     <ClInclude Include="src\game\levelLoader\GameObjectFactory.h" />
     <ClInclude Include="src\game\levelLoader\LevelLoader.h" />
-    <ClInclude Include="src\game\terrain\GoalFactory.h" />
+    <ClInclude Include="src\game\goal\GoalFactory.h" />
+    <ClInclude Include="src\game\ui\ClearScreenRenderer.h" />
     <ClInclude Include="src\game\ui\DeadInputHandler.h" />
     <ClInclude Include="src\game\ui\DeadRenderer.h" />
     <ClInclude Include="src\game\character\DeathChecker.h" />
@@ -218,6 +223,7 @@
     <ClInclude Include="src\game\terrain\TerrainFactory.h" />
     <ClInclude Include="src\game\ui\DeathScreenFactory.h" />
     <ClInclude Include="src\game\ui\DeathUpdater.h" />
+    <ClInclude Include="src\game\ui\WinScreenFactory.h" />
     <ClInclude Include="src\game\Wobba.h" />
   </ItemGroup>
   <ItemGroup>
@@ -240,9 +246,11 @@
     <Image Include="assets\creepy.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="assets\deadCreepy.png" />
     <Image Include="assets\fireball.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="assets\goal.png" />
     <Image Include="assets\lava.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
@@ -256,6 +264,7 @@
     <Font Include="assets\verdana.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="assets\CreepyDeath.wav" />
     <Media Include="assets\Death.wav">
       <DeploymentContent>true</DeploymentContent>
     </Media>

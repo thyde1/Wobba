@@ -10,7 +10,7 @@
 #include "../terrain/LavaFactory.h"
 #include "../hazards/FireballFactory.h"
 #include "../enemies/CreepyFactory.h"
-#include "../terrain/GoalFactory.h"
+#include "../goal/GoalFactory.h"
 
 LevelLoader::LevelLoader(Game &game) : game(game)
 {

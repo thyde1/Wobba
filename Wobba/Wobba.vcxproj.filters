@@ -105,7 +105,16 @@
     <ClCompile Include="src\game\components\SetLifespanUpdater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\terrain\GoalFactory.cpp">
+    <ClCompile Include="src\game\ui\WinScreenFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\ui\ClearScreenRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\goal\GoalFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\goal\WinCollisionHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -213,7 +222,16 @@
     <ClInclude Include="src\game\components\SetLifespanUpdater.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\terrain\GoalFactory.h">
+    <ClInclude Include="src\game\ui\WinScreenFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\ui\ClearScreenRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\goal\GoalFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\goal\WinCollisionHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -245,6 +263,12 @@
     <Image Include="assets\sword.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\deadCreepy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\goal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\verdana.ttf" />
@@ -254,6 +278,9 @@
       <Filter>Resource Files</Filter>
     </Media>
     <Media Include="assets\Death.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="assets\CreepyDeath.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

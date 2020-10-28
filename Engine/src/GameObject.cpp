@@ -78,6 +78,10 @@ void GameObject::handleCollision(Collision collision)
     for (auto collisionHandler : this->collisionHandlers)
     {
         collisionHandler->handleCollision(collision);
+        for (auto otherCollisionHandler : collision.colliderB->getGameObject()->collisionHandlers) {
+            auto normal = Vector{ 0, 0 } - collision.normal;
+            otherCollisionHandler->handleCollision({ collision.isCollision, normal, collision.colliderB, collision.colliderA });
+        }
     }
 }
 
